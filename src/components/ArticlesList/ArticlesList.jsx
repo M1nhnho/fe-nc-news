@@ -8,7 +8,7 @@ import ArticleCard from "../ArticleCard/ArticleCard.jsx";
 export default function ArticlesList()
 {
     const { topic } = useParams();
-    const [articles, setArticles] = useState([]);
+    const [articlesObj, setArticlesObj] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() =>
@@ -17,7 +17,7 @@ export default function ArticlesList()
         getArticles(topic)
             .then((articlesData) =>
             {
-                setArticles(articlesData);
+                setArticlesObj(articlesData);
                 setIsLoading(false);
             });
     }, [topic]);
@@ -26,9 +26,10 @@ export default function ArticlesList()
         isLoading ? <Loader /> :
         <>
             <h2>{topic}</h2>
+            <p>{articlesObj.total_count} articles found!</p>
             <ul id="articles-list">
                 {
-                    articles.map((article) =>
+                    articlesObj.articles.map((article) =>
                     {
                         return <ArticleCard key={article.article_id} article={article} />
                     })
