@@ -2,7 +2,7 @@
 {
     width: 100px;
     height: 100px;
-    margin: auto;
+    margin: 50px auto;
     background: conic-gradient(white, transparent);
     border-radius: 50%;
     animation: spin 1s linear infinite;

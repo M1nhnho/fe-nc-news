@@ -1,11 +1,22 @@
 nav
 {
-    width: 800px;
+    width: calc(100% - 20px);
     background-color: white;
+    padding: 10px;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), inset 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 50px;
+
+    overflow: auto;
+    white-space: nowrap;
 
     a
     {
-        padding: 0 10px;
+        padding: 10px;
+        border-right: solid 2px #242424;
+    }
+
+    a:first-child
+    {
+        border-left: solid 2px #242424;
     }
 }
