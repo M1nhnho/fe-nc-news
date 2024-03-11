@@ -1,11 +1,18 @@
 import './ArticleCard.css';
 import { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { getUserByUsername } from '../../utils/api';
 
 export default function ArticleCard({ article })
 {
+    const navigate = useNavigate();
     const [author, setAuthor] = useState({});
     
+    function viewArticle()
+    {
+        navigate(`/articles/${article.article_id}`);
+    }
+
     useEffect(() =>
     {
         getUserByUsername(article.author)
@@ -16,7 +23,7 @@ export default function ArticleCard({ article })
     }, []);
 
     return (
-        <li id="article-card">
+        <li id="article-card" onClick={viewArticle}>
             <img id="article-img" src={article.article_img_url} />
             <p>Topic: {article.topic}</p>
             <p>Date created: {article.created_at}</p>
