@@ -1,0 +1,11 @@
+nav
+{
+    width: 800px;
+    background-color: white;
+    border-radius: 50px;
+
+    a
+    {
+        padding: 0 10px;
+    }
+}

@@ -1,0 +1,14 @@
+#loader
+{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    background: conic-gradient(white, transparent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin
+{
+    0% { transform: rotate(1turn) };
+}
