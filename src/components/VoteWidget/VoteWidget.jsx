@@ -1,6 +1,6 @@
 import './VoteWidget.css';
 import { useState } from 'react';
-import { patchArticleByArticleID, patchCommentByID } from '../../utils/api';
+import { patchArticleByArticleID, patchCommentByID } from '../../utils/api.js';
 
 export default function VoteWidget({ parentType, votes, parentID })
 {

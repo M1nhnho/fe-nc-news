@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getCommentsByArticleID, getUsers } from '../../utils/api.js';
 import Loader from '../Loader/Loader.jsx';
 import CommentCard from '../CommentCard/CommentCard.jsx';
+import CommentPost from '../CommentPost/CommentPost.jsx';
 
 export default function CommentsList({ articleID, commentCount })
 {
@@ -30,6 +31,7 @@ export default function CommentsList({ articleID, commentCount })
         isLoading ? <Loader /> :
         <>
             <h3>Comments ({commentCount})</h3>
+            <CommentPost articleID={articleID} setComments={setComments} />
             <ul className="comments-list">
             {
                 comments.map((comment) =>

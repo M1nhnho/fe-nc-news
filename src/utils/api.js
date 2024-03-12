@@ -48,6 +48,15 @@ export function getCommentsByArticleID(articleID)
         });
 }
 
+export function postCommentAtArticleID(articleID, username, body)
+{
+    return ncNewsAPI.post(`articles/${articleID}/comments`, { username, body })
+        .then(({ data }) =>
+        {
+            return data.comment;
+        });
+}
+
 export function patchCommentByID(id, inc_votes)
 {
     return ncNewsAPI.patch(`comments/${id}`, { inc_votes })
