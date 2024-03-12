@@ -30,6 +30,15 @@ export function getArticleByID(id)
         });
 }
 
+export function getCommentsByArticleID(id)
+{
+    return ncNewsAPI.get(`articles/${id}/comments`)
+        .then(({ data }) =>
+        {
+            return data.comments;
+        });
+}
+
 export function getUsers()
 {
     return ncNewsAPI.get('users')

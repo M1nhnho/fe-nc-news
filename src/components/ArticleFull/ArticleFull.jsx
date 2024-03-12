@@ -1,13 +1,14 @@
 import './ArticleFull.css';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { getArticleByID, getUserByUsername } from '../../utils/api.js';
 import Loader from '../Loader/Loader.jsx';
-import CommentCard from '../CommentCard/CommentCard.jsx';
+import UserTag from '../UserTag/UserTag.jsx';
+import CommentsList from '../CommentsList/CommentsList.jsx';
 
 export default function ArticleFull()
 {
-    const { article_id } = useParams()
+    const { article_id: articleID } = useParams()
     const [article, setArticle] = useState({});
     const [author, setAuthor] = useState({});
     const [isLoading, setIsLoading] = useState(true);
@@ -15,12 +16,12 @@ export default function ArticleFull()
     useEffect(() =>
     {
         setIsLoading(true);
-        getArticleByID(article_id)
+        getArticleByID(articleID)
             .then((articleData) =>
             {
-                setArticle(() => { return articleData });
+                setArticle(articleData);
             });
-    }, [article_id]);
+    }, [articleID]);
 
     useEffect(() =>
     {
@@ -39,7 +40,7 @@ export default function ArticleFull()
     return (
         isLoading ? <Loader /> :
         <>
-            <div className="article-base article-full">
+            <div className="card-base article-full">
                 <div className="article-img-container">
                     <img src={article.article_img_url} />
                     <div className="article-img-footer">
@@ -48,14 +49,11 @@ export default function ArticleFull()
                     </div>
                 </div>
                 <h3>{article.title}</h3>
-                <div className="user-info">
-                    <img src={author.avatar_url} />
-                    <span>{author.username} ({author.name})</span>
-                </div>
+                <UserTag user={author} />
                 <p>{article.body}</p>
                 <p>Votes: {article.votes}</p>
             </div>
-            <CommentCard />
+            <CommentsList articleID={articleID} commentCount={article.comment_count}/>
         </>
     );
 }

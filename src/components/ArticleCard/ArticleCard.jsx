@@ -1,5 +1,6 @@
 import './ArticleCard.css';
 import { useNavigate } from "react-router-dom";
+import UserTag from '../UserTag/UserTag';
 
 export default function ArticleCard({ article, author })
 {
@@ -11,7 +12,7 @@ export default function ArticleCard({ article, author })
     }
 
     return (
-        <li className="article-base article-card" onClick={viewArticle}>
+        <li className="card-base article-card" onClick={viewArticle}>
             <div className="article-img-container">
                 <img src={article.article_img_url} />
                 <div className="article-img-footer">
@@ -20,10 +21,7 @@ export default function ArticleCard({ article, author })
                 </div>
             </div>
             <h3>{article.title}</h3>
-            <div className="user-info">
-                <img src={author.avatar_url} />
-                <span>{author.username} ({author.name})</span>
-            </div>
+            <UserTag user={author} />
             <div className="article-card-footer">
                 <p className="article-votes">Votes: {article.votes}</p>
                 <div className="comment-count"><b>{article.comment_count}</b></div>

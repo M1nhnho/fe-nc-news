@@ -34,13 +34,13 @@ export default function ArticlesList()
             <h2>{topic.toUpperCase()}</h2>
             <p>{articlesObj.total_count} articles found!</p>
             <ul id="articles-list">
+            {
+                articlesObj.articles.map((article) =>
                 {
-                    articlesObj.articles.map((article) =>
-                    {
-                        const author = users.find((user) => user.username === article.author);
-                        return <ArticleCard key={article.article_id} article={article} author={author} />
-                    })
-                }
+                    const author = users.find((user) => user.username === article.author);
+                    return <ArticleCard key={article.article_id} article={article} author={author} />
+                })
+            }
             </ul>
         </>
     )
