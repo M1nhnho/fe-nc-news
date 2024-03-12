@@ -35,7 +35,7 @@ export default function CommentsList({ articleID, commentCount })
                 comments.map((comment) =>
                 {
                     const author = users.find((user) => user.username === comment.author);
-                    return <CommentCard comment={comment} author={author} />
+                    return <CommentCard key={comment.comment_id} comment={comment} author={author} />
                 })
             }
             </ul>

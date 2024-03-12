@@ -5,6 +5,7 @@ import { getArticleByID, getUserByUsername } from '../../utils/api.js';
 import Loader from '../Loader/Loader.jsx';
 import UserTag from '../UserTag/UserTag.jsx';
 import CommentsList from '../CommentsList/CommentsList.jsx';
+import VoteWidget from '../VoteWidget/VoteWidget.jsx';
 
 export default function ArticleFull()
 {
@@ -40,7 +41,7 @@ export default function ArticleFull()
     return (
         isLoading ? <Loader /> :
         <>
-            <div className="card-base article-full">
+            <article className="card-base article-full">
                 <div className="article-img-container">
                     <img src={article.article_img_url} />
                     <div className="article-img-footer">
@@ -51,8 +52,8 @@ export default function ArticleFull()
                 <h3>{article.title}</h3>
                 <UserTag user={author} />
                 <p>{article.body}</p>
-                <p>Votes: {article.votes}</p>
-            </div>
+                <VoteWidget votes={article.votes} articleID={articleID} />
+            </article>
             <CommentsList articleID={articleID} commentCount={article.comment_count}/>
         </>
     );

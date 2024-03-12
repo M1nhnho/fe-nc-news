@@ -1,5 +1,6 @@
 import './CommentCard.css';
 import UserTag from '../UserTag/UserTag';
+import VoteWidget from '../VoteWidget/VoteWidget';
 
 export default function CommentCard({ comment, author })
 {
@@ -8,7 +9,7 @@ export default function CommentCard({ comment, author })
             <UserTag user={author} />
             <span>{comment.created_at.split('T')[0]}</span>
             <p>{comment.body}</p>
-            <span>Votes: {comment.votes}</span>
+            <VoteWidget votes={comment.votes} />
         </li>
     );
 }

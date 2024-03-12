@@ -30,6 +30,15 @@ export function getArticleByID(id)
         });
 }
 
+export function patchArticleByArticleID(id, inc_votes)
+{
+    return ncNewsAPI.patch(`articles/${id}`, { inc_votes })
+        .then(({ data }) =>
+        {
+            return data.article;
+        });
+}
+
 export function getCommentsByArticleID(id)
 {
     return ncNewsAPI.get(`articles/${id}/comments`)

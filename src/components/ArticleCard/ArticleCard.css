@@ -1,12 +1,13 @@
 .article-card
 {
     width: 300px;
+    cursor: pointer;
     transition: all 0.25s;
 
     &:hover
     {
-        box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), 0 0 10px 2px white, inset 0 0 50px rgba(0, 0, 0, 0.1);
         width: 310px;
+        box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), 0 0 10px 2px white, inset 0 0 50px rgba(0, 0, 0, 0.1);
     }
 
     .article-card-footer
