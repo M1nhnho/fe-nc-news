@@ -9,7 +9,7 @@ export default function CommentCard({ comment, author })
             <UserTag user={author} />
             <span>{comment.created_at.split('T')[0]}</span>
             <p>{comment.body}</p>
-            <VoteWidget votes={comment.votes} />
+            <VoteWidget parentType="comment" votes={comment.votes} parentID={comment.comment_id}/>
         </li>
     );
 }

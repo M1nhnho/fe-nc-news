@@ -39,12 +39,21 @@ export function patchArticleByArticleID(id, inc_votes)
         });
 }
 
-export function getCommentsByArticleID(id)
+export function getCommentsByArticleID(articleID)
 {
-    return ncNewsAPI.get(`articles/${id}/comments`)
+    return ncNewsAPI.get(`articles/${articleID}/comments`)
         .then(({ data }) =>
         {
             return data.comments;
+        });
+}
+
+export function patchCommentByID(id, inc_votes)
+{
+    return ncNewsAPI.patch(`comments/${id}`, { inc_votes })
+        .then(({ data }) =>
+        {
+            return data.comment;
         });
 }
 

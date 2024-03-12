@@ -25,7 +25,7 @@ export default function ArticleCard({ article, author })
                 <h3>{article.title}</h3>
                 <UserTag user={author} />
                 <div className="article-card-footer">
-                    <VoteWidget votes={article.votes} />
+                    <VoteWidget parentType="article" votes={article.votes} parentID={article.article_id}/>
                     <div className="comment-count"><b>{article.comment_count}</b></div>
                 </div>
             </article>

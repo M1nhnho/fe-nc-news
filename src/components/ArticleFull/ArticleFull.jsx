@@ -52,7 +52,7 @@ export default function ArticleFull()
                 <h3>{article.title}</h3>
                 <UserTag user={author} />
                 <p>{article.body}</p>
-                <VoteWidget votes={article.votes} articleID={articleID} />
+                <VoteWidget parentType="article" votes={article.votes} parentID={articleID} />
             </article>
             <CommentsList articleID={articleID} commentCount={article.comment_count}/>
         </>
