@@ -1,4 +1,4 @@
-#articles-list
+.comments-list
 {
     display: flex;
     flex-flow: row wrap;

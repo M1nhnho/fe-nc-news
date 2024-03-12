@@ -30,6 +30,24 @@ export function getArticleByID(id)
         });
 }
 
+export function getCommentsByArticleID(id)
+{
+    return ncNewsAPI.get(`articles/${id}/comments`)
+        .then(({ data }) =>
+        {
+            return data.comments;
+        });
+}
+
+export function getUsers()
+{
+    return ncNewsAPI.get('users')
+        .then(({ data }) =>
+        {
+            return data.users;
+        });
+}
+
 export function getUserByUsername(username)
 {
     return ncNewsAPI.get(`users/${username}`)

@@ -1,19 +1,54 @@
-#article-card
+.article-card
 {
-    width: 580px;
-    background-color: white;
-    box-shadow: 0 0 10px black;
-    margin: 10px auto 40px auto;
-    padding: 10px;
-    border-radius: 10px;
-    color: black;
-    text-align: left;
+    width: 300px;
+    transition: all 0.25s;
 
-    #article-img
+    &:hover
     {
-        width: 600px;
-        object-fit: contain;
-        margin: -10px;
-        border-radius: 10px 10px 0 0;
+        box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), 0 0 10px 2px white, inset 0 0 50px rgba(0, 0, 0, 0.1);
+        width: 310px;
+    }
+
+    .article-card-footer
+    {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+
+        p
+        {
+            margin: 0;
+        }
+
+        .comment-count
+        {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: #242424;
+            color: white;
+            text-align: center;
+            position: relative;
+    
+            b
+            {
+                position: absolute;
+                top: 45%;
+                transform: translate(-50%, -50%);
+            }
+    
+            &::after
+            {
+                content: '';
+                z-index: 0;
+                position: absolute;
+                left: -5px;
+                bottom: 0;
+                width: 0;
+                height: 0;
+                border: solid 10px transparent;
+                border-bottom-color: #242424;
+            }
+        }
     }
 }

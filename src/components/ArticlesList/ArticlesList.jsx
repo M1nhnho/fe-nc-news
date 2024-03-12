@@ -1,7 +1,7 @@
 import './ArticlesList.css';
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
-import { getArticles } from "../../utils/api.js";
+import { getArticles, getUsers } from "../../utils/api.js";
 import Loader from "../Loader/Loader.jsx";
 import ArticleCard from "../ArticleCard/ArticleCard.jsx";
 
@@ -9,6 +9,7 @@ export default function ArticlesList()
 {
     const { topic } = useParams();
     const [articlesObj, setArticlesObj] = useState({});
+    const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() =>
@@ -18,6 +19,11 @@ export default function ArticlesList()
             .then((articlesData) =>
             {
                 setArticlesObj(articlesData);
+                return getUsers();
+            })
+            .then((usersData) =>
+            {
+                setUsers(usersData);
                 setIsLoading(false);
             });
     }, [topic]);
@@ -25,15 +31,16 @@ export default function ArticlesList()
     return (
         isLoading ? <Loader /> :
         <>
-            <h2>{topic}</h2>
+            <h2>{topic.toUpperCase()}</h2>
             <p>{articlesObj.total_count} articles found!</p>
             <ul id="articles-list">
+            {
+                articlesObj.articles.map((article) =>
                 {
-                    articlesObj.articles.map((article) =>
-                    {
-                        return <ArticleCard key={article.article_id} article={article} />
-                    })
-                }
+                    const author = users.find((user) => user.username === article.author);
+                    return <ArticleCard key={article.article_id} article={article} author={author} />
+                })
+            }
             </ul>
         </>
     )

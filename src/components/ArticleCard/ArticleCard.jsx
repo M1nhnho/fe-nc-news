@@ -1,39 +1,31 @@
 import './ArticleCard.css';
-import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { getUserByUsername } from '../../utils/api';
+import UserTag from '../UserTag/UserTag';
 
-export default function ArticleCard({ article })
+export default function ArticleCard({ article, author })
 {
     const navigate = useNavigate();
-    const [author, setAuthor] = useState({});
     
     function viewArticle()
     {
         navigate(`/articles/${article.article_id}`);
     }
 
-    useEffect(() =>
-    {
-        getUserByUsername(article.author)
-            .then((userData) =>
-            {
-                setAuthor(userData);
-            });
-    }, []);
-
     return (
-        <li id="article-card" onClick={viewArticle}>
-            <img id="article-img" src={article.article_img_url} />
-            <p>Topic: {article.topic}</p>
-            <p>Date created: {article.created_at}</p>
-            <h3>{article.title}</h3>
-            <div className="user-info">
-                <img src={author.avatar_url} />
-                <p>{author.username} ({author.name})</p>
+        <li className="card-base article-card" onClick={viewArticle}>
+            <div className="article-img-container">
+                <img src={article.article_img_url} />
+                <div className="article-img-footer">
+                    <b>{article.topic}</b>
+                    <span>{article.created_at.split('T')[0]}</span>
+                </div>
             </div>
-            <p>Votes: {article.votes}</p>
-            <p>Comments: {article.comment_count}</p>
+            <h3>{article.title}</h3>
+            <UserTag user={author} />
+            <div className="article-card-footer">
+                <p className="article-votes">Votes: {article.votes}</p>
+                <div className="comment-count"><b>{article.comment_count}</b></div>
+            </div>
         </li>
     )
 }

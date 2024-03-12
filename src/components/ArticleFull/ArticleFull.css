@@ -1,19 +1,4 @@
-#article-full
+.article-full
 {
-    width: 780px;
-    background-color: white;
-    box-shadow: 0 0 10px black;
-    margin: 10px auto;
-    padding: 10px;
-    border-radius: 10px;
-    color: black;
-    text-align: left;
-
-    #article-img
-    {
-        width: 800px;
-        object-fit: contain;
-        margin: -10px;
-        border-radius: 10px 10px 0 0;
-    }
+    width: calc(100% - 20px);
 }
