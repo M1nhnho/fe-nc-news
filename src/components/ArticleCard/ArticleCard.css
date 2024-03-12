@@ -1,12 +1,12 @@
 .article-card
 {
-    width: 300px;
+    width: 290px;
     cursor: pointer;
     transition: all 0.25s;
 
     &:hover
     {
-        width: 310px;
+        width: 300px;
         box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), 0 0 10px 2px white, inset 0 0 50px rgba(0, 0, 0, 0.1);
     }
 
@@ -14,7 +14,7 @@
     {
         display: flex;
         justify-content: space-between;
-        margin-top: 10px;
+        align-items: end;
 
         p
         {
