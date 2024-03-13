@@ -13,13 +13,12 @@
 
 a
 {
-    font-weight: 500;
     color: #646cff;
     text-decoration: inherit;
 }
 a:hover
 {
-    color: #535bf2;
+    color: #320dff;
 }
 
 body
@@ -41,7 +40,7 @@ h1
 {
     height: 100%;
     margin: 10px auto;
-    padding: 10px;
+    padding: 15px;
     background-color: white;
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), 0 0 10px 2px black, inset 0 0 50px rgba(0, 0, 0, 0.1);
     border-radius: 0 21px 20px 20px;
@@ -51,36 +50,35 @@ h1
 
     h3
     {
-        margin: 15px 0 5px 0;
-    }
-}
-
-.article-img-container
-{
-    width: calc(100% + 20px);
-    margin: -10px;
-    border-radius: 10px 10px 0 0;
-    position: relative;
-    
-    &::after
-    {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 4px;
-        left: 0;
-        background: linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.8));
-    }
-    
-    img
-    {
-        width: 100%;
-        object-fit: contain;
-        border-radius: 0 20px 0 0;
+        margin: 20px 0 5px 0;
     }
 
-    .article-img-footer
+    .article-img-container
+    {
+        width: calc(100% + 30px);
+        margin: -15px;
+        border-radius: 10px 10px 0 0;
+        position: relative;
+        
+        &::after
+        {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 4px;
+            left: 0;
+            background: linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.8));
+        }
+        
+        img
+        {
+            width: 100%;
+            object-fit: contain;
+            border-radius: 0 20px 0 0;
+        }
+    }
+    .article-img-container__footer
     {
         display: flex;
         justify-content: space-between;
@@ -91,4 +89,15 @@ h1
         bottom: 0;
         color: white;
     }
+}
+
+.unsuccessful
+{
+    background-color: rgba(255, 0, 0, 0.1);
+    border: solid 3px red;
+}
+.successful
+{
+    background-color: rgba(0, 255, 0, 0.1);
+    border: solid 3px green;
 }

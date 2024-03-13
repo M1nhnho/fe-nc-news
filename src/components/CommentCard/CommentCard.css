@@ -1,4 +1,9 @@
 .comment-card
 {
-    width: 300px;
+    width: 290px;
+}
+
+.comment-card__date-created
+{
+    color: #727272;
 }

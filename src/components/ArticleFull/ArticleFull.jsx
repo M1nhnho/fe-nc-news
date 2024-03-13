@@ -44,15 +44,15 @@ export default function ArticleFull()
             <article className="card-base article-full">
                 <div className="article-img-container">
                     <img src={article.article_img_url} />
-                    <div className="article-img-footer">
+                    <div className="article-img-container__footer">
                         <b>{article.topic}</b>
-                        <span>{article.created_at.split('T')[0]}</span>
+                        <span>{article.created_at.split('T')[0]} ({article.created_at.split('T')[1].slice(0, 5)})</span>
                     </div>
                 </div>
                 <h3>{article.title}</h3>
                 <UserTag user={author} />
                 <p>{article.body}</p>
-                <VoteWidget votes={article.votes} articleID={articleID} />
+                <VoteWidget parentType="article" votes={article.votes} parentID={articleID} />
             </article>
             <CommentsList articleID={articleID} commentCount={article.comment_count}/>
         </>
