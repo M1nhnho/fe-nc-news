@@ -54,7 +54,7 @@ export default function ArticleFull()
                 <p>{article.body}</p>
                 <VoteWidget parentType="article" votes={article.votes} parentID={articleID} />
             </article>
-            <CommentsList articleID={articleID} commentCount={article.comment_count}/>
+            <CommentsList articleID={articleID} />
         </>
     );
 }

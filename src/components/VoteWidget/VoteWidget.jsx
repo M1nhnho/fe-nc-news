@@ -36,8 +36,8 @@ export default function VoteWidget({ parentType, votes, parentID })
 
     return (
         <div className="vote-widget">
-            <button className="upvote-button" onClick={(event) => { sendVote(event, 1) }}></button>
-            <button className="downvote-button" onClick={(event) => { sendVote(event, -1) }}></button>
+            <button className="circle-button circle-button--upvote" onClick={(event) => { sendVote(event, 1) }}></button>
+            <button className="circle-button circle-button--downvote" onClick={(event) => { sendVote(event, -1) }}></button>
             <span>{localVotes}</span>
         </div>
     )
