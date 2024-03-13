@@ -4,7 +4,7 @@ import { UserContext } from '../../contexts/User.jsx';
 import UserTag from '../UserTag/UserTag.jsx';
 import { postCommentAtArticleID } from '../../utils/api.js';
 
-export default function CommentPost({ articleID, setComments })
+export default function CommentPost({ articleID, setCommentsObj })
 {
     const { user } = useContext(UserContext);
     const [body, setBody] = useState('');
@@ -29,9 +29,9 @@ export default function CommentPost({ articleID, setComments })
                     setBody('');
                     setBodyClasses('successful');
                     setPostMessage('Comment posted!');
-                    setComments((currentComments) =>
+                    setCommentsObj((currCommentsObj) =>
                     {
-                        return [comment, ...currentComments];
+                        return { comments: [comment, ...currCommentsObj.comments], totalCount: currCommentsObj.totalCount + 1 };
                     });
                     setIsPosting(false);
                 })

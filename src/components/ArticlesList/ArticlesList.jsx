@@ -32,7 +32,7 @@ export default function ArticlesList()
         isLoading ? <Loader /> :
         <>
             <h2>{topic.toUpperCase()}</h2>
-            <p>{articlesObj.total_count} articles found!</p>
+            <p>{articlesObj.totalCount} articles found!</p>
             <ul id="articles-list">
             {
                 articlesObj.articles.map((article) =>

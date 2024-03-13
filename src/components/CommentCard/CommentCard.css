@@ -7,3 +7,15 @@
 {
     color: #727272;
 }
+
+.comment-card__body
+{
+    margin-bottom: 0;
+}
+
+.comment-card__footer
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
