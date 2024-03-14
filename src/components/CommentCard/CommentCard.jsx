@@ -14,10 +14,11 @@ export default function CommentCard({ comment, author, setCommentsObj })
     function deleteComment()
     {
         setIsDeleting(true);
+        setCommentClasses('deletion--pending')
         deleteCommentByID(comment.comment_id)
             .then(() =>
             {
-                setCommentClasses('on-deletion');
+                setCommentClasses('deletion--successful');
                 setTimeout(() =>
                 {
                     setCommentsObj((currCommentsObj) =>
@@ -32,6 +33,11 @@ export default function CommentCard({ comment, author, setCommentsObj })
             .catch((error) =>
             {
                 console.log(error);
+                setCommentClasses('deletion--unsuccessful');
+                setTimeout(() =>
+                {
+                    setCommentClasses('');
+                }, 5000);
                 setIsDeleting(false);
             });
     }
