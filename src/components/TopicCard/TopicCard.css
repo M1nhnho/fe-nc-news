@@ -1,0 +1,22 @@
+.topic-card
+{
+    width: 290px;
+    cursor: pointer;
+    transition: all 0.25s;
+
+    &:hover
+    {
+        width: 300px;
+        box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), 0 0 10px 2px white, inset 0 0 50px rgba(0, 0, 0, 0.1);
+    }
+
+    h3
+    {
+        margin-top: 0 !important;
+    }
+
+    span
+    {
+        word-wrap: break-word;
+    }
+}

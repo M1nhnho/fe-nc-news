@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root
 {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: Urbanist;
+    font-size: 16px;
+    font-weight: 500;
 
     color: white;
     background-color: #242424;
@@ -11,16 +15,6 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-a
-{
-    color: #646cff;
-    text-decoration: inherit;
-}
-a:hover
-{
-    color: #320dff;
-}
-
 body
 {
     margin: 0;
@@ -29,11 +23,22 @@ body
     min-width: 320px;
     min-height: 100vh;
 }
-
-h1
+h2
 {
-    font-size: 3.2em;
-    line-height: 1.1;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+a
+{
+    color: #6060ff;
+    text-decoration: inherit;
+    &:hover { color: #320dff; }
+}
+button
+{
+    font-family: Urbanist;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .card-base
@@ -50,7 +55,7 @@ h1
 
     h3
     {
-        margin: 20px 0 5px 0;
+        margin: 25px 0 5px 0;
     }
 
     .article-img-container
@@ -91,32 +96,6 @@ h1
     }
 }
 
-.unsuccessful
-{
-    background-color: rgba(255, 0, 0, 0.1);
-    border: solid 3px red;
-    box-shadow: inset 0 0 10px rgba(255, 0, 0, 0.2);
-}
-.successful
-{
-    background-color: rgba(0, 255, 0, 0.1);
-    border: solid 3px green;
-    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
-}
-
-.on-deletion
-{
-    animation: deletion 0.25s ease-in-out forwards;
-}
-@keyframes deletion
-{
-    100%
-    {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0%);
-    }
-}
-
 .circle-button
 {
     width: 35px;
@@ -124,7 +103,7 @@ h1
     border: solid 1px rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5), inset 0 0 5px rgba(0, 0, 0, 0.1);
-    background-color: #646cff;
+    background-color: #6060ff;
     text-align: center;
     position: relative;
     cursor: pointer;
@@ -142,11 +121,11 @@ h1
 
 .circle-button--delete
 {
-    background-color: rgba(255, 0, 50, 0.6);
+    background-color: rgb(255, 60, 60);
 
     &:active
     {
-        border: solid 1px rgba(255, 0, 50, 0.5);
+        border: solid 1px rgb(200, 0, 0);
     }
 
     &:disabled
@@ -176,5 +155,69 @@ h1
     &::after
     {
         transform: rotate(45deg);
+    }
+}
+
+.home-button
+{
+    width: 47px;
+    height: 47px;
+    border: solid 3px white;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5), inset 0 0 5px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+
+
+    &::before
+    {
+        content: '';
+        position: absolute;
+        top: 20px;
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+        background-color: white;
+    }
+    &::after
+    {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border: solid 15px transparent;
+        border-bottom-color: white;
+        transform: translateX(-50%);
+    }
+}
+
+.unsuccessful
+{
+    background-color: rgba(255, 0, 0, 0.1);
+    border: solid 3px red;
+    box-shadow: inset 0 0 10px rgba(255, 0, 0, 0.2);
+}
+.successful
+{
+    background-color: rgba(0, 255, 0, 0.1);
+    border: solid 3px green;
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+.on-deletion
+{
+    animation: deletion 0.25s ease-in-out forwards;
+}
+@keyframes deletion
+{
+    100%
+    {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0%);
     }
 }

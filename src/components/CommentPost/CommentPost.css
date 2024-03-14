@@ -40,27 +40,28 @@
     justify-content: space-between;
     margin-top: 15px;
 }
+
 .comment-form__submit
 {
-    width: 80px;
+    width: 100px;
     height: 40px;
     padding: 10px;
     border: solid 1px rgba(0, 0, 0, 0.1);
     border-radius: 50px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5), inset 0 0 5px rgba(0, 0, 0, 0.1);
-    background-color: #646cff;
+    background-color: #6060ff;
     color: white;
     cursor: pointer;
     transition: all 0.1s;
 
     &:active
     {
-        width: 76px;
+        width: 96px;
         height: 36px;
         margin: 2px;
         box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
         border: solid 1px #320dff;
-        font-size: 0.75em;
+        font-size: 0.85rem;
     }
 
     &:disabled

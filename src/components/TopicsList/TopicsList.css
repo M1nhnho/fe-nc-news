@@ -1,0 +1,9 @@
+#topics-list
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-top: 0;
+    padding: 0;
+    list-style-type: none;
+}
