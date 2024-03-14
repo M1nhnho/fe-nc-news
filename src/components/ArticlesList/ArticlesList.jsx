@@ -33,7 +33,7 @@ export default function ArticlesList()
         <>
             <h2>{topic.toUpperCase()}</h2>
             <p>{articlesObj.totalCount} articles found!</p>
-            <ul id="articles-list">
+            <ul className="cards-list">
             {
                 articlesObj.articles.map((article) =>
                 {

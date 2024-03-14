@@ -4,6 +4,7 @@
     {
         padding: 7px;
         border: solid 3px white;
+        border-bottom: none;
         border-radius: 0 20px 0 0;
         background-color: #242424;
         box-shadow: inset 0 0 20px black;
@@ -26,6 +27,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 0 !important;
+    box-shadow: none !important;
 }
 
 #comment-body-textarea

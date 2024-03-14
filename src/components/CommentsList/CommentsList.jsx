@@ -30,9 +30,9 @@ export default function CommentsList({ articleID })
     return (
         isLoading ? <Loader /> :
         <>
-            <h3>Comments ({commentsObj.totalCount})</h3>
+            <h2>Comments ({commentsObj.totalCount})</h2>
             <CommentPost articleID={articleID} setCommentsObj={setCommentsObj} />
-            <ul className="comments-list">
+            <ul className="cards-list">
             {
                 commentsObj.comments.map((comment) =>
                 {

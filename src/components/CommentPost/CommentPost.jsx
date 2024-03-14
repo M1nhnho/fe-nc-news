@@ -49,7 +49,7 @@ export default function CommentPost({ articleID, setCommentsObj })
     return (
         <div className="comment-post">
             <UserTag user={user} />
-            <form className="card-base comment-form">
+            <form className="base-card comment-form">
                 <label htmlFor="comment-body-textarea">Comment Box:</label>
                 <textarea
                     id="comment-body-textarea"
