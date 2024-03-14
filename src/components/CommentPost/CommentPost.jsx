@@ -23,12 +23,13 @@ export default function CommentPost({ articleID, setCommentsObj })
         else
         {
             setIsPosting(true);
+            setPostMessage('Posting comment...');
             postCommentAtArticleID(articleID, user.username, body)
                 .then((comment) =>
                 {
                     setBody('');
                     setBodyClasses('successful');
-                    setPostMessage('Comment posted!');
+                    setPostMessage('Comment successfully posted!');
                     setCommentsObj((currCommentsObj) =>
                     {
                         return { comments: [comment, ...currCommentsObj.comments], totalCount: currCommentsObj.totalCount + 1 };
@@ -39,7 +40,7 @@ export default function CommentPost({ articleID, setCommentsObj })
                 {
                     console.log(error);
                     setBodyClasses('unsuccessful');
-                    setPostMessage('An error occurred, please try again.');
+                    setPostMessage('Sorry! Something went wrong, please try again.');
                     setIsPosting(false);
                 });
         }

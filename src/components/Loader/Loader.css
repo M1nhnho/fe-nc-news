@@ -3,12 +3,12 @@
     width: 100px;
     height: 100px;
     margin: 50px auto;
-    background: conic-gradient(white, transparent);
+    background: conic-gradient(transparent, white);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
 
 @keyframes spin
 {
-    0% { transform: rotate(1turn) };
+    0% { transform: rotate(-1turn) };
 }

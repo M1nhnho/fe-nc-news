@@ -9,6 +9,11 @@
         width: 300px;
         box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), 0 0 10px 2px white, inset 0 0 50px rgba(0, 0, 0, 0.1);
     }
+
+    .user-tag__name
+    {
+        display: none;
+    }
 }
 
 .article-card__footer
