@@ -2,12 +2,18 @@
 
 :root
 {
+    --dark-theme-black: #242424;
+    --blurred-blue: #6060ff;
+    --focused-blue: #320dff;
+    --blurred-red: #ff3c3c;
+    --focused-red: #c80000;
+
     font-family: Urbanist;
     font-size: 16px;
     font-weight: 500;
 
     color: white;
-    background-color: #242424;
+    background-color: var(--dark-theme-black);
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -30,9 +36,9 @@ h2
 }
 a
 {
-    color: #6060ff;
+    color: var(--blurred-blue);
     text-decoration: inherit;
-    &:hover { color: #320dff; }
+    &:hover { color: var(--focused-blue); }
 }
 button
 {
@@ -40,16 +46,49 @@ button
     font-size: 0.9rem;
     font-weight: 500;
 }
+nav
+{
+    width: calc(100% - 20px);
+    padding: 5px 10px;
+    border-radius: 50px;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), inset 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: white;
+
+    overflow: auto;
+    white-space: nowrap;
+
+    a
+    {
+        padding: 5px 10px;
+        border-right: solid 2px #242424;
+        font-weight: bold;
+    }
+
+    a:first-child
+    {
+        border-left: solid 2px #242424;
+    }
+}
+
+.grow-hover
+{
+    cursor: pointer;
+    transition: all 0.25s;
+
+    &:hover
+    {
+        position: relative;
+        z-index: 1;
+        transform: scale(1.1);
+    }
+}
 
 .glow-hover
 {
     cursor: pointer;
-    transition: all 0.25s;
-    
+
     &:hover
     {
-        z-index: 1;
-        transform: scale(1.1);
         box-shadow:
             0 0 1px rgba(255, 255, 255, 0.33),
             0 0 10px 2px white,
@@ -57,6 +96,7 @@ button
             inset 0 0 50px rgba(0, 0, 0, 0.1);
     }
 }
+
 
 .cards-list
 {
@@ -118,7 +158,7 @@ button
     border: solid 1px rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5), inset 0 0 5px rgba(0, 0, 0, 0.1);
-    background-color: #6060ff;
+    background-color: var(--blurred-blue);
     text-align: center;
     position: relative;
     cursor: pointer;
@@ -129,18 +169,18 @@ button
         width: 31px;
         height: 31px;
         margin: 2px;
-        border: solid 1px #320dff;
+        border: solid 1px var(--focused-blue);
         box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
     }
 }
 
 .circle-button--delete
 {
-    background-color: rgb(255, 60, 60);
+    background-color: var(--blurred-red);
 
     &:active
     {
-        border: solid 1px rgb(200, 0, 0);
+        border: solid 1px var(--focused-red);
     }
 
     &:disabled
@@ -203,7 +243,6 @@ button
     position: relative;
     cursor: pointer;
 
-
     &::before
     {
         content: '';
@@ -250,8 +289,8 @@ button
     left: 50%;
     transform: translate(-50%, -50%);
     width: 75%;
-    background-color: rgb(255, 60, 60);
-    border: solid 1px rgb(200, 0, 0);
+    background-color: var(--blurred-red);
+    border: solid 1px var(--focused-red);
     border-radius: 0 20px 20px 20px;
     color: white;
     text-align: center;

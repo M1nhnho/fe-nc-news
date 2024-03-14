@@ -1,12 +1,8 @@
-.comment-card
+.comment-card .user-tag
 {
-    width: calc(100% - 30px);
-
-    .user-tag
-    {
-        margin-bottom: 0px;
-    }
+    margin-bottom: 0px;
 }
+
 
 .comment-date-created
 {

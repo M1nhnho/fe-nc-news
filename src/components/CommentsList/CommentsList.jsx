@@ -1,20 +1,35 @@
 import './CommentsList.css';
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useIsMaxWindowWidth } from '../../hooks/useIsMaxWindowWidth.jsx';
 import { getCommentsByArticleID, getUsers } from '../../utils/api.js';
 import Loader from '../Loader/Loader.jsx';
-import CommentCard from '../CommentCard/CommentCard.jsx';
 import CommentPost from '../CommentPost/CommentPost.jsx';
+import CommentCard from '../CommentCard/CommentCard.jsx';
+import PagesNav from '../PagesNav/PagesNav.jsx';
 
 export default function CommentsList({ articleID })
 {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const pageQuery = searchParams.get('p')
+    const isMaxWindowWidth = useIsMaxWindowWidth();
+
     const [commentsObj, setCommentsObj] = useState({});
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    function setPage(pageNumber)
+    {
+        const newParams = new URLSearchParams(searchParams);
+        newParams.set('p', pageNumber);
+        setSearchParams(newParams);
+    }
+
     useEffect(() =>
     {
         setIsLoading(true);
-        getCommentsByArticleID(articleID)
+        const limitQuery = isMaxWindowWidth ? 12 : 10;
+        getCommentsByArticleID(articleID, pageQuery, limitQuery)
             .then((commentsData) =>
             {
                 setCommentsObj(commentsData);
@@ -25,7 +40,7 @@ export default function CommentsList({ articleID })
                 setUsers(usersData);
                 setIsLoading(false);
             });
-    }, [articleID]);
+    }, [articleID, pageQuery, isMaxWindowWidth]);
 
     return (
         isLoading ? <Loader /> :
@@ -41,6 +56,7 @@ export default function CommentsList({ articleID })
                 })
             }
             </ul>
+            <PagesNav totalCount={commentsObj.totalCount} isMaxWindowWidth={isMaxWindowWidth} setPage={setPage} />
         </>
     );
 }

@@ -9,7 +9,7 @@ export default function ArticleCard({ article, author })
     
     function viewArticle()
     {
-        navigate(`/articles/${article.article_id}`);
+        navigate(`/articles/${article.article_id}/comments`);
     }
 
     return (

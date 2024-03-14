@@ -1,0 +1,110 @@
+#articles-info
+{
+    margin: 0 10px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+#articles-queries
+{
+    margin-top: 20px;
+}
+
+#articles-sort-by-label
+{
+    padding: 6px;
+    border-image: linear-gradient(to right, var(--blurred-blue), #eee) 5;
+    border-width: 3px;
+    border-style: solid;
+    background-color: #242424;
+    box-shadow: inset 0 0 20px black;
+}
+
+#articles-sort-by-select
+{
+    height: 37px;
+    padding-left: 2px;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), inset 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    cursor: pointer;
+
+    font-family: Urbanist, Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+}
+
+.switch
+{
+    position: relative;
+
+    .circle-button
+    {
+        border-radius: 20px 0 0 20px;
+        &:active
+        {
+            border-right-color: transparent;
+        }
+    }
+
+    #articles-order-checkbox
+    {
+        opacity: 0;
+    }
+    
+    #articles-order-switch
+    {
+        position: absolute;
+        top: -9px;
+        left: -13px;
+
+        &::before
+        {
+            content: '';
+            position: absolute;
+            top: 1px;
+            right: 12px;
+            bottom: 1px;
+            left: 12px;
+            background-color: white;
+            border-radius: 10px;
+        }
+        &::after
+        {
+            content: '';
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            bottom: 3px;
+            left: 3px;
+            border: solid white;
+            border-width: 10px 10px 0 0;
+            border-radius: 10px;
+            transform: rotate(-45deg);
+        }
+    }
+
+    #articles-order-checkbox:checked + #articles-order-switch::after
+    {
+        transform: rotate(135deg);
+    }
+}
+
+
+@media screen and (min-width: 500px)
+{
+    #articles-info
+    {
+        margin: 0 10px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: end;
+    }
+
+    #articles-queries
+    {
+        margin-top: 0;
+    }
+}

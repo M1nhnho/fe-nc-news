@@ -5,7 +5,7 @@
 
 .topic-card
 {
-    width: 290px;
+    width: 290px !important;
 
     h3
     {

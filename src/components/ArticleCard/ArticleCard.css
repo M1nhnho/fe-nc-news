@@ -1,7 +1,5 @@
 .article-card
 {
-    width: calc(100% - 30px);
-
     .user-tag__name,
     .article-date-created
     {

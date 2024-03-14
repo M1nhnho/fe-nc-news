@@ -20,18 +20,12 @@
         border-width: 10px 10px 0 0;
         border-radius: 10px;
     }
-    .circle-button--upvote
+    .circle-button--upvote::after
     {
-        &::after
-        {
-            transform: rotate(-45deg);
-        }
+        transform: rotate(-45deg);
     }
-    .circle-button--downvote
+    .circle-button--downvote::after
     {
-        &::after
-        {
-            transform: rotate(135deg);
-        }
+        transform: rotate(135deg);
     }
 }

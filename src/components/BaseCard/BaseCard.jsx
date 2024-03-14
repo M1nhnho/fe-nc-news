@@ -1,15 +1,38 @@
 import './BaseCard.css';
-import { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { UserContext } from '../../contexts/User.jsx';
 import VoteWidget from '../VoteWidget/VoteWidget.jsx';
 
 export default function BaseCard({ children, cardType, cardObj, viewFunction, deleteFunction, deletionClasses, isDeleting })
 {
     const { user } = useContext(UserContext);
+    const [rotateCardDegrees, setRotateCardDegrees] = useState({ x: 0, y: 0 });
     const [type, subtype] = cardType.split('-');
 
+    function rotateCard(event)
+    {
+        const cardRect = event.currentTarget.getBoundingClientRect();
+        const cardCentreX = cardRect.width / 2;
+        const cardCentreY = cardRect.height / 2;
+
+        const mouseRelativeToCardX = event.clientX - cardRect.left;
+        const mouseRelativeToCardY = event.clientY - cardRect.top;
+
+        const rotateX = (mouseRelativeToCardX - cardCentreX) / cardCentreX * 5;
+        const rotateY = (mouseRelativeToCardY - cardCentreY) / cardCentreY * 5;
+        setRotateCardDegrees({ x: rotateX, y: rotateY });
+    }
+
     return (
-        <div className={`base-card ${cardType} ${viewFunction && 'glow-hover'} ${deletionClasses}`} onClick={viewFunction}>
+        <div className={viewFunction && 'grow-hover'}>
+            <div
+                className={`base-card ${cardType} ${viewFunction && 'glow-hover'} ${deletionClasses}`}
+                onClick={viewFunction}
+                onMouseMove={subtype !== 'full' ? rotateCard : undefined}
+                onMouseLeave={() => setRotateCardDegrees({ x: 0, y: 0 })}
+                style={
+                    { transform: `perspective(1000px) rotateX(${-1 * rotateCardDegrees.y}deg) rotateY(${rotateCardDegrees.x}deg)` }
+                }>
             {
                 type === 'article' &&
                 <div className="article-img-container">
@@ -38,6 +61,7 @@ export default function BaseCard({ children, cardType, cardObj, viewFunction, de
                     }
                 </div>
             }
+            </div>
         </div>
     )
 }
