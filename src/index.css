@@ -72,6 +72,8 @@ nav
 
 .grow-hover
 {
+    width: fit-content;
+    margin: 0 auto;
     cursor: pointer;
     transition: all 0.25s;
 
