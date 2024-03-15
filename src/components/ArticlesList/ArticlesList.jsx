@@ -87,7 +87,7 @@ export default function ArticlesList()
             <div id="articles-info">
                 <span>{articlesObj.totalCount && `${articlesObj.totalCount} articles found!`}</span>
                 <div id="articles-queries">
-                    <label htmlFor="articles-order-checkbox" className="switch">
+                    <label htmlFor="articles-order-checkbox" id="articles-order-label">
                         <input type="checkbox" id="articles-order-checkbox" checked={orderQuery === 'desc'} onChange={(event) => setOrder(event.target.checked)} />
                         <div className="circle-button" id="articles-order-switch"></div>
                     </label>
