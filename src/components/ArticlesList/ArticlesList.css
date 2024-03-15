@@ -35,7 +35,7 @@
     font-size: 1rem;
 }
 
-.switch
+#articles-order-label
 {
     position: relative;
 
@@ -51,13 +51,14 @@
     #articles-order-checkbox
     {
         opacity: 0;
+        width: 35px
     }
     
     #articles-order-switch
     {
         position: absolute;
         top: -9px;
-        left: -13px;
+        left: 7px;
 
         &::before
         {
