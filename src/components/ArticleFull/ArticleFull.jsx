@@ -2,6 +2,7 @@ import './ArticleFull.css';
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { getArticleByID, getUserByUsername } from '../../utils/api.js';
+import ErrorDisplay from '../ErrorDisplay/ErrorDisplay.jsx';
 import Loader from '../Loader/Loader.jsx';
 import BaseCard from '../BaseCard/BaseCard.jsx';
 import UserTag from '../UserTag/UserTag.jsx';
@@ -12,6 +13,7 @@ export default function ArticleFull()
     const { article_id: articleID } = useParams()
     const [article, setArticle] = useState({});
     const [author, setAuthor] = useState({});
+    const [errorNotFound, setErrorNotFound] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() =>
@@ -21,6 +23,15 @@ export default function ArticleFull()
             .then((articleData) =>
             {
                 setArticle(articleData);
+            })
+            .catch((error) =>
+            {
+                setErrorNotFound(
+                    {
+                        status: error.response.status,
+                        message: `The article\nID: ${articleID}\ndoes not seem to exist...`
+                    }
+                )
             });
     }, [articleID]);
 
@@ -33,12 +44,22 @@ export default function ArticleFull()
                 {
                     setAuthor(userData);
                     setIsLoading(false);
+                })
+                .catch((error) =>
+                {
+                    setErrorNotFound(
+                        {
+                            status: error.response.status,
+                            message: `The user\n${article.author}\ndoes not seem to exist...`
+                        }
+                    )
                 });
             return;
         }
     }, [article])
 
     return (
+        errorNotFound ? <ErrorDisplay error={errorNotFound} /> :
         isLoading ? <Loader /> :
         <>
             <article>

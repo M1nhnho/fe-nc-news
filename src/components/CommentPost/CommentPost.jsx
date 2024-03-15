@@ -38,7 +38,6 @@ export default function CommentPost({ articleID, setCommentsObj })
                 })
                 .catch((error) =>
                 {
-                    console.log(error);
                     setBodyClasses('unsuccessful');
                     setPostMessage('Sorry! Something went wrong, please try again.');
                     setIsPosting(false);

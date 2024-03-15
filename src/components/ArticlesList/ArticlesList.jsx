@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useParams, useSearchParams } from "react-router-dom";
 import { useIsMaxWindowWidth } from '../../hooks/useIsMaxWindowWidth.jsx';
 import { getArticles, getUsers } from "../../utils/api.js";
+import ErrorDisplay from '../ErrorDisplay/ErrorDisplay.jsx';
 import Loader from "../Loader/Loader.jsx";
 import ArticleCard from "../ArticleCard/ArticleCard.jsx";
 import PagesNav from '../PagesNav/PagesNav.jsx';
@@ -16,9 +17,10 @@ export default function ArticlesList()
     const orderQuery = searchParams.get('order');
     const pageQuery = searchParams.get('p')
     const isMaxWindowWidth = useIsMaxWindowWidth();
-
+    
     const [articlesObj, setArticlesObj] = useState({});
     const [users, setUsers] = useState([]);
+    const [errorNotFound, setErrorNotFound] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     function setSortBy(sortByValue)
@@ -48,6 +50,15 @@ export default function ArticlesList()
         setIsLoading(true);
         const limitQuery = isMaxWindowWidth ? 12 : 10;
         getArticles(topic, sortByQuery, orderQuery, pageQuery, limitQuery)
+            .catch((error) =>
+            {
+                setErrorNotFound(
+                    {
+                        status: error.response.status,
+                        message: `The topic\n${topic}\ndoes not seem to exist...`
+                    }
+                )
+            })
             .then((articlesData) =>
             {
                 setArticlesObj(articlesData);
@@ -57,10 +68,20 @@ export default function ArticlesList()
             {
                 setUsers(usersData);
                 setIsLoading(false);
+            })
+            .catch((error) =>
+            {
+                setErrorNotFound(
+                    {
+                        status: error.response.status,
+                        message: 'Something went wrong...'
+                    }
+                )
             });
     }, [topic, sortByQuery, orderQuery, pageQuery, isMaxWindowWidth]);
 
     return (
+        errorNotFound ? <ErrorDisplay error={errorNotFound} /> : 
         <>
             <h2>{topic.toUpperCase()}</h2>
             <div id="articles-info">

@@ -30,7 +30,6 @@ export default function CommentCard({ comment, author, setCommentsObj })
             })
             .catch((error) =>
             {
-                console.log(error);
                 setCommentClasses('deletion--unsuccessful');
                 setTimeout(() =>
                 {

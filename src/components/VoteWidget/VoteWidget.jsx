@@ -15,7 +15,6 @@ export default function VoteWidget({ parentType, votes, parentID })
             patchArticleByArticleID(parentID, incrementVotes)
                 .catch((error) =>
                 {
-                    console.log(error);
                     setLocalVotes((currentLocalVotes) => currentLocalVotes - incrementVotes);
                 });
         }
@@ -24,7 +23,6 @@ export default function VoteWidget({ parentType, votes, parentID })
             patchCommentByID(parentID, incrementVotes)
                 .catch((error) =>
                 {
-                    console.log(error);
                     setLocalVotes((currentLocalVotes) => currentLocalVotes - incrementVotes);
                 });
         }
