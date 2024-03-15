@@ -24,9 +24,9 @@ export default function BaseCard({ children, cardType, cardObj, viewFunction, de
     }
 
     return (
-        <div className={viewFunction && 'grow-hover'}>
+        <div className={viewFunction ? 'grow-hover' : ''}>
             <div
-                className={`base-card ${cardType} ${viewFunction && 'glow-hover'} ${deletionClasses}`}
+                className={`base-card ${cardType} ${viewFunction ? 'glow-hover' : ''} ${deletionClasses}`}
                 onClick={viewFunction}
                 onMouseMove={subtype !== 'full' ? rotateCard : undefined}
                 onMouseLeave={() => setRotateCardDegrees({ x: 0, y: 0 })}
