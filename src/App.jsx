@@ -14,6 +14,7 @@ export default function App()
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/topics" element={<Navigate to={'/'} />} />
                 <Route path="/topics/:topic" element={<ArticlesList />} />
                 <Route path="/articles/:article_id" element={<Navigate to={`${window.location.pathname}/comments`} />} />
                 <Route path="/articles/:article_id/comments" element={<ArticleFull />} />

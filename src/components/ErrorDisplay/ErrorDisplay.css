@@ -1,7 +1,7 @@
 #error-display
 {
     width: 290px;
-    margin: 30px auto;
+    margin: 50px auto;
     padding: 15px;
     background-color: var(--blurred-red);
     border: solid 1px var(--focused-red);
