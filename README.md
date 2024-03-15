@@ -1,7 +1,7 @@
 # Northcoders News API
 As part of *Northcoder's Skills Bootcamp in Software Development*, we were tasked with building a C.R.U.D. application frontend which uses information from my other [backend project](https://github.com/M1nhnho/be-nc-news). This app allows clients to view articles, grouped under topics, along with comments and the users behind them - akin to Reddit or similar news services.
 
-This frontend project was built in HTML, CSS, and Javascript using [React](https://react.dev/) to enable easier management by splitting parts into reusable components that can be conditionally rendered. Additionally, error handling has been implemented and various in-built hooks have been used along with my custom hook to detect window size. Moreover, [Axios](https://axios-http.com/) was used to access my backend API. Responsiveness was also kept in consideration and [WAVE](https://wave.webaim.org/) was used for accessibility to conform to WCAG 2.2 at Level AA.
+This frontend project was built in HTML, CSS, and Javascript using [React](https://react.dev/) to enable easier management by splitting parts into reusable components that can be conditionally rendered. Error handling has been implemented and various in-built hooks have been used along with my custom hook to detect window size. Responsiveness was also kept in consideration and [WAVE](https://wave.webaim.org/) was used for accessibility to conform to WCAG 2.2 at Level AA. Moreover, [Axios](https://axios-http.com/) was used to access my backend API.
 
 ## Hosted version
 My frontend project can be found here:  
@@ -11,7 +11,7 @@ Hosted via [Netlify](https://www.netlify.com/).
 
 ### Navigation
 ```md
-<Header>
+<Header> (always appears at the top)
 - Clickable title
   -> Navigates to <Home>
 
@@ -21,16 +21,12 @@ Hosted via [Netlify](https://www.netlify.com/).
 #-------------------------
 
 <Home>
-- <Header>
-
 - List of clickable topics
   -> Navigates to <Articles> of the clicked topic
 
 #-------------------------
 
 <Articles>
-- <Header>
-
 - Sort by
   - Arrow button
     -> Swaps between ascending and descending order
@@ -48,8 +44,6 @@ Hosted via [Netlify](https://www.netlify.com/).
 #-------------------------
 
 <Full Article>
-- <Header>
-
 - Full article with more details
   - Vote buttons
     -> Upvotes/downvotes article
@@ -71,8 +65,6 @@ Hosted via [Netlify](https://www.netlify.com/).
 #-------------------------
 
 <Error> (appears on non-existent path)
-- <Header>
-
 - Error message
 
 - Home button

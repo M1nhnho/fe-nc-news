@@ -5,12 +5,12 @@
     
     img
     {
+        object-fit: cover;
+        margin-right: 5px;
+        border: solid 1px var(--dark-theme-black);
+        border-radius: 50%;
         width: 20px;
         height: 20px;
-        margin-right: 5px;
-        object-fit: cover;
-        border: solid 1px #242424;
-        border-radius: 50%;
     }
     
     p

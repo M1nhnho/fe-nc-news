@@ -65,7 +65,7 @@ export default function CommentPost({ articleID, setCommentsObj })
                     } />
                 <div className="comment-form__footer">
                     <span>{postMessage}</span>
-                    <button className="comment-form__submit" onClick={handleSubmit} disabled={isPosting}>Comment</button>
+                    <button aria-label="Post comment" className="comment-form__submit" onClick={handleSubmit} disabled={isPosting}>Comment</button>
                 </div>
             </form>
         </div>

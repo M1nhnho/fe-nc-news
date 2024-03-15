@@ -1,11 +1,11 @@
 #error-display
 {
-    width: 290px;
     margin: 50px auto;
-    padding: 15px;
-    background-color: var(--blurred-red);
     border: solid 1px var(--focused-red);
     border-radius: 0 20px 20px 20px;
+    width: 290px;
+    padding: 15px;
+    background-color: var(--blurred-red);
     white-space: pre-wrap;
 
     h2

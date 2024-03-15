@@ -1,16 +1,17 @@
 .base-card
 {
-    list-style-type: none;
-    width: calc(100% - 30px);
-    height: 100%;
+    position: relative;
     margin: 10px auto;
-    padding: 15px;
-    background-color: white;
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), 0 0 10px 2px black, inset 0 0 50px rgba(0, 0, 0, 0.1);
     border-radius: 0 21px 20px 20px;
-    color: #242424;
+    width: calc(100% - 30px);
+    height: 100%;
+    padding: 15px;
+
+    background-color: white;
     text-align: left;
-    position: relative;
+    color: var(--dark-theme-black);
+    list-style-type: none;
 
     h3
     {
@@ -31,17 +32,17 @@
 
     .comment-count
     {
+        position: relative;
+        box-shadow: inset 0 0 10px black;
+        border-radius: 50%;
         width: 35px;
         height: 35px;
-        border-radius: 50%;
-        box-shadow: inset 0 0 10px black;
-        background-color: #242424;
-        color: white;
+        background-color: var(--dark-theme-black);
+        text-align: center;
         text-shadow:
             -1px -1px 2px black,  1px -1px 2px black,
-                1px  1px 2px black, -1px  1px 2px black;
-        text-align: center;
-        position: relative;
+             1px  1px 2px black, -1px  1px 2px black;
+        color: white;
 
         b
         {
@@ -53,15 +54,15 @@
         &::after
         {
             content: '';
-            z-index: 0;
             position: absolute;
-            left: -5px;
+            z-index: 0;
             bottom: 0;
-            width: 0;
-            height: 0;
+            left: -5px;
+            transform: scaleX(1.25);
             border: solid 10px transparent;
             border-bottom-color: #161616;
-            transform: scaleX(1.25);
+            width: 0;
+            height: 0;
         }
     }
 }

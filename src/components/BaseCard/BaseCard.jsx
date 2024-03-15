@@ -57,7 +57,7 @@ export default function BaseCard({ children, cardType, cardObj, viewFunction, de
                     }
                     {
                         deleteFunction && user.username === cardObj.author &&
-                        <button className="circle-button circle-button--delete" onClick={deleteFunction} disabled={isDeleting}></button>
+                        <button aria-label="Delete comment" className="circle-button circle-button--delete" onClick={deleteFunction} disabled={isDeleting}></button>
                     }
                 </div>
             }
