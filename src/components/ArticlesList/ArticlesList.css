@@ -82,13 +82,13 @@
             border: solid white;
             border-width: 10px 10px 0 0;
             border-radius: 10px;
-            transform: rotate(-45deg);
+            transform: rotate(135deg);
         }
     }
 
     #articles-order-checkbox:checked + #articles-order-switch::after
     {
-        transform: rotate(135deg);
+        transform: rotate(-45deg);
     }
 }
 

@@ -20,7 +20,7 @@ export default function ArticlesList()
     
     const [articlesObj, setArticlesObj] = useState({});
     const [users, setUsers] = useState([]);
-    const [errorNotFound, setErrorNotFound] = useState(null);
+    const [errorObj, setErrorObj] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     function setSortBy(sortByValue)
@@ -30,10 +30,10 @@ export default function ArticlesList()
         setSearchParams(newParams);
     }
 
-    function setOrder(isDescending)
+    function setOrder(isAscending)
     {
         const newParams = new URLSearchParams(searchParams);
-        const direction = isDescending ? 'desc' : 'asc'
+        const direction = isAscending ? 'asc' : 'desc'
         newParams.set('order', direction);
         setSearchParams(newParams);
     }
@@ -48,17 +48,9 @@ export default function ArticlesList()
     useEffect(() =>
     {
         setIsLoading(true);
+        setErrorObj(null);
         const limitQuery = isMaxWindowWidth ? 12 : 10;
         getArticles(topic, sortByQuery, orderQuery, pageQuery, limitQuery)
-            .catch((error) =>
-            {
-                setErrorNotFound(
-                    {
-                        status: error.response.status,
-                        message: `The topic\n${topic}\ndoes not seem to exist...`
-                    }
-                )
-            })
             .then((articlesData) =>
             {
                 setArticlesObj(articlesData);
@@ -71,24 +63,49 @@ export default function ArticlesList()
             })
             .catch((error) =>
             {
-                setErrorNotFound(
-                    {
-                        status: error.response.status,
-                        message: 'Something went wrong...'
-                    }
-                )
+                if (error.response.status === 400)
+                {
+                    let queries = '';
+                    sortByQuery && (queries += `\nSort by: ${sortByQuery}`);
+                    orderQuery && (queries += `\nOrder by: ${orderQuery}`);
+                    pageQuery && (queries += `\nPage number: ${pageQuery}`);
+                    setErrorObj(
+                        {
+                            status: error.response.status,
+                            message: `\nSeems your queries has a mistake${queries}`
+                        }
+                    )
+                }
+                else if (error.response.status === 404)
+                {
+                    setErrorObj(
+                        {
+                            status: error.response.status,
+                            message: `The topic\n${topic}\ndoes not seem to exist...`
+                        }
+                    )
+                }
+                else
+                {
+                    setErrorObj(
+                        {
+                            status: error.response.status,
+                            message: 'Something went wrong...'
+                        }
+                    )
+                }
             });
     }, [topic, sortByQuery, orderQuery, pageQuery, isMaxWindowWidth]);
 
     return (
-        errorNotFound ? <ErrorDisplay error={errorNotFound} /> : 
+        errorObj ? <ErrorDisplay error={errorObj} /> : 
         <>
             <h2>{topic.toUpperCase()}</h2>
             <div id="articles-info">
                 <span>{articlesObj.totalCount && `${articlesObj.totalCount} articles found!`}</span>
                 <div id="articles-queries">
                     <label htmlFor="articles-order-checkbox" id="articles-order-label">
-                        <input type="checkbox" id="articles-order-checkbox" checked={orderQuery === 'desc'} onChange={(event) => setOrder(event.target.checked)} />
+                        <input type="checkbox" id="articles-order-checkbox" checked={orderQuery === 'asc'} onChange={(event) => setOrder(event.target.checked)} />
                         <div className="circle-button" id="articles-order-switch"></div>
                     </label>
 
