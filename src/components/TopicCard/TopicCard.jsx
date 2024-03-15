@@ -1,5 +1,6 @@
 import './TopicCard.css';
 import { useNavigate } from "react-router-dom";
+import BaseCard from '../BaseCard/BaseCard.jsx';
 
 export default function TopicCard({ topic })
 {
@@ -11,9 +12,11 @@ export default function TopicCard({ topic })
     }
 
     return (
-        <li className="card-base topic-card" onClick={viewArticlesFromTopic}>
-            <h3>➜ {topic.slug}</h3>
-            <span>{topic.description}</span>
+        <li className="topic-list-item">
+            <BaseCard cardType="topic-card" cardObj={topic} viewFunction={viewArticlesFromTopic}>
+                <h3>➜ {topic.slug}</h3>
+                <span>{topic.description}</span>
+            </BaseCard>
         </li>
     )
 }

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const ncNewsAPI = axios.create({ baseURL: 'https://nc-news-452q.onrender.com/api/' });
 
+// --- TOPICS ---
 export function getTopics()
 {
     return ncNewsAPI.get('/topics')
@@ -11,10 +12,19 @@ export function getTopics()
         });
 }
 
-export function getArticles(topic)
+// postTopic()
+
+// --- ARTICLES ---
+export function getArticles(topic, sort_by, order, p, limit)
 {
-    const query = topic === 'all' ? null : { params: {topic} };
-    return ncNewsAPI.get(`articles`, query)
+    const query = {};
+    topic !== 'all' && (query.topic = topic);
+    sort_by && (query.sort_by = sort_by);
+    order && (query.order = order);
+    p && (query.p = p);
+    limit && (query.limit = limit);
+
+    return ncNewsAPI.get(`articles`, { params: query })
         .then(({ data: {articles, total_count} }) =>
         {
             return { articles, totalCount: total_count };
@@ -30,6 +40,8 @@ export function getArticleByID(id)
         });
 }
 
+// postArticle()
+
 export function patchArticleByArticleID(id, inc_votes)
 {
     return ncNewsAPI.patch(`articles/${id}`, { inc_votes })
@@ -39,9 +51,14 @@ export function patchArticleByArticleID(id, inc_votes)
         });
 }
 
-export function getCommentsByArticleID(articleID)
+// --- COMMENTS ---
+export function getCommentsByArticleID(articleID, p, limit)
 {
-    return ncNewsAPI.get(`articles/${articleID}/comments`)
+    const query = {};
+    p && (query.p = p);
+    limit && (query.limit = limit);
+
+    return ncNewsAPI.get(`articles/${articleID}/comments`, { params: query })
         .then(({ data: {comments, total_count} }) =>
         {
             return { comments, totalCount: total_count };
@@ -71,6 +88,7 @@ export function deleteCommentByID(id)
     return ncNewsAPI.delete(`comments/${id}`);
 }
 
+// --- USERS ---
 export function getUsers()
 {
     return ncNewsAPI.get('users')

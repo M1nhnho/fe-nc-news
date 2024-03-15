@@ -2,12 +2,18 @@
 
 :root
 {
+    --dark-theme-black: #242424;
+    --blurred-blue: #6060ff;
+    --focused-blue: #320dff;
+    --blurred-red: #ff3c3c;
+    --focused-red: #c80000;
+
     font-family: Urbanist;
     font-size: 16px;
     font-weight: 500;
 
     color: white;
-    background-color: #242424;
+    background-color: var(--dark-theme-black);
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -30,9 +36,9 @@ h2
 }
 a
 {
-    color: #6060ff;
+    color: var(--blurred-blue);
     text-decoration: inherit;
-    &:hover { color: #320dff; }
+    &:hover { color: var(--focused-blue); }
 }
 button
 {
@@ -40,60 +46,109 @@ button
     font-size: 0.9rem;
     font-weight: 500;
 }
-
-.card-base
+nav
 {
-    height: 100%;
-    margin: 10px auto;
-    padding: 15px;
+    width: calc(100% - 20px);
+    padding: 5px 10px;
+    border-radius: 50px;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), inset 0 0 20px rgba(0, 0, 0, 0.1);
     background-color: white;
-    box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), 0 0 10px 2px black, inset 0 0 50px rgba(0, 0, 0, 0.1);
-    border-radius: 0 21px 20px 20px;
-    color: #242424;
-    text-align: left;
-    position: relative;
 
-    h3
+    overflow: auto;
+    white-space: nowrap;
+
+    a
     {
-        margin: 25px 0 5px 0;
+        padding: 5px 10px;
+        border-right: solid 2px #242424;
+        font-weight: bold;
     }
 
-    .article-img-container
+    a:first-child
     {
-        width: calc(100% + 30px);
-        margin: -15px;
-        border-radius: 10px 10px 0 0;
+        border-left: solid 2px #242424;
+    }
+}
+
+.grow-hover
+{
+    cursor: pointer;
+    transition: all 0.25s;
+
+    &:hover
+    {
         position: relative;
-        
-        &::after
-        {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 4px;
-            left: 0;
-            background: linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.8));
-        }
-        
-        img
-        {
-            width: 100%;
-            object-fit: contain;
-            border-radius: 0 20px 0 0;
-        }
-    }
-    .article-img-container__footer
-    {
-        display: flex;
-        justify-content: space-between;
-        width: calc(100% - 20px);
-        padding: 10px;
         z-index: 1;
-        position: absolute;
-        bottom: 0;
-        color: white;
+        transform: scale(1.1);
     }
+}
+
+.glow-hover
+{
+    cursor: pointer;
+
+    &:hover
+    {
+        box-shadow:
+            0 0 1px rgba(255, 255, 255, 0.33),
+            0 0 10px 2px white,
+            0 0 30px 6px black,
+            inset 0 0 50px rgba(0, 0, 0, 0.1);
+    }
+}
+
+
+.cards-list
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 0;
+    list-style-type: none;
+
+    li
+    {
+        width: 320px;
+        height: fit-content;
+        margin: 0 auto;
+    }
+}
+
+.article-img-container
+{
+    width: calc(100% + 30px);
+    margin: -15px;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    
+    &::after
+    {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 4px;
+        left: 0;
+        background: linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.8));
+    }
+    
+    img
+    {
+        width: 100%;
+        object-fit: contain;
+        border-radius: 0 20px 0 0;
+    }
+}
+.article-img-container__footer
+{
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 20px);
+    padding: 10px;
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    color: white;
 }
 
 .circle-button
@@ -103,7 +158,7 @@ button
     border: solid 1px rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5), inset 0 0 5px rgba(0, 0, 0, 0.1);
-    background-color: #6060ff;
+    background-color: var(--blurred-blue);
     text-align: center;
     position: relative;
     cursor: pointer;
@@ -114,18 +169,18 @@ button
         width: 31px;
         height: 31px;
         margin: 2px;
-        border: solid 1px #320dff;
+        border: solid 1px var(--focused-blue);
         box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
     }
 }
 
 .circle-button--delete
 {
-    background-color: rgb(255, 60, 60);
+    background-color: var(--blurred-red);
 
     &:active
     {
-        border: solid 1px rgb(200, 0, 0);
+        border: solid 1px var(--focused-red);
     }
 
     &:disabled
@@ -188,7 +243,6 @@ button
     position: relative;
     cursor: pointer;
 
-
     &::before
     {
         content: '';
@@ -235,8 +289,8 @@ button
     left: 50%;
     transform: translate(-50%, -50%);
     width: 75%;
-    background-color: rgb(255, 60, 60);
-    border: solid 1px rgb(200, 0, 0);
+    background-color: var(--blurred-red);
+    border: solid 1px var(--focused-red);
     border-radius: 0 20px 20px 20px;
     color: white;
     text-align: center;

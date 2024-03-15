@@ -1,0 +1,25 @@
+.pages-nav
+{
+    padding: 0 10px;
+
+    button
+    {
+        padding: 5px 10px;
+        border: none;
+        border-right: solid 2px #242424;
+        background: none;
+        color: var(--blurred-blue);
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover
+        {
+            color: var(--focused-blue);
+        }
+    }
+
+    button:first-child
+    {
+        border-left: solid 2px #242424;
+    }
+}

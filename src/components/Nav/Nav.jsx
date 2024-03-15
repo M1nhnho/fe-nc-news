@@ -17,12 +17,12 @@ export default function Nav()
     }, []);
 
     return (
-        <nav>
-            <Link to='/topics/all'><b>all</b></Link>
+        <nav id="topics-nav">
+            <Link to='/topics/all'>all</Link>
             {
                 topics.map((topic) =>
                 {
-                    return <Link to={`/topics/${topic.slug}`} key={topic.slug}><b>{topic.slug}</b></Link>
+                    return <Link to={`/topics/${topic.slug}`} key={topic.slug}>{topic.slug}</Link>
                 })
             }
         </nav>
