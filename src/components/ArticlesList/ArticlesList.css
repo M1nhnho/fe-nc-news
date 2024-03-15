@@ -1,9 +1,9 @@
 #articles-info
 {
-    margin: 0 10px;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
+    margin: 0 10px;
 }
 
 #articles-queries
@@ -13,26 +13,26 @@
 
 #articles-sort-by-label
 {
-    padding: 6px;
-    border-image: linear-gradient(to right, var(--blurred-blue), #eee) 5;
-    border-width: 3px;
-    border-style: solid;
-    background-color: #242424;
     box-shadow: inset 0 0 20px black;
+    border-style: solid;
+    border-width: 3px;
+    border-image: linear-gradient(to right, var(--blurred-blue), #eee) 5;
+    padding: 6px;
+    background-color: var(--dark-theme-black);
 }
 
 #articles-sort-by-select
 {
-    height: 37px;
-    padding-left: 2px;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), inset 0 0 20px rgba(0, 0, 0, 0.1);
     border: none;
     border-radius: 0 20px 20px 0;
-    box-shadow: 0 0 1px rgba(255, 255, 255, 0.33), inset 0 0 20px rgba(0, 0, 0, 0.1);
+    height: 37px;
+    padding-left: 2px;
     background-color: white;
     cursor: pointer;
 
-    font-family: Urbanist, Arial, Helvetica, sans-serif;
     font-size: 1rem;
+    font-family: Urbanist, Arial, Helvetica, sans-serif;
 }
 
 #articles-order-label
@@ -65,11 +65,11 @@
             content: '';
             position: absolute;
             top: 1px;
-            right: 12px;
             bottom: 1px;
             left: 12px;
-            background-color: white;
+            right: 12px;
             border-radius: 10px;
+            background-color: white;
         }
         &::after
         {
@@ -79,10 +79,10 @@
             right: 3px;
             bottom: 3px;
             left: 3px;
+            transform: rotate(135deg);
             border: solid white;
             border-width: 10px 10px 0 0;
             border-radius: 10px;
-            transform: rotate(135deg);
         }
     }
 
@@ -97,11 +97,11 @@
 {
     #articles-info
     {
-        margin: 0 10px;
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
         align-items: end;
+        margin: 0 10px;
     }
 
     #articles-queries

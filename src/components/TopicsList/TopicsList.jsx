@@ -23,7 +23,7 @@ export default function TopicsList()
     return (
         isLoading ? <Loader /> :
         <>
-            <h2>TOPICS ({topics.length})</h2>
+            <h2>Topics ({topics.length})</h2>
             <ul className="cards-list" id="topics-list">
             {
                 topics.map((topic) =>

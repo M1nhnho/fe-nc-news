@@ -15,7 +15,7 @@ export default function Header()
     return (
         <header>
             <div id="title-container" onClick={returnToHome}>
-                <button className="home-button"></button>
+                <button aria-label="Return to home" className="home-button"></button>
                 <h1>NC News</h1>
             </div>
             <UserBar />

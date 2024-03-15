@@ -100,11 +100,11 @@ export default function ArticlesList()
     return (
         errorObj ? <ErrorDisplay error={errorObj} /> : 
         <>
-            <h2>{topic.toUpperCase()}</h2>
+            <h2>{topic}</h2>
             <div id="articles-info">
                 <span>{articlesObj.totalCount && `${articlesObj.totalCount} articles found!`}</span>
                 <div id="articles-queries">
-                    <label htmlFor="articles-order-checkbox" id="articles-order-label">
+                    <label aria-label="Order articles by ascending or descending" htmlFor="articles-order-checkbox" id="articles-order-label">
                         <input type="checkbox" id="articles-order-checkbox" checked={orderQuery === 'asc'} onChange={(event) => setOrder(event.target.checked)} />
                         <div className="circle-button" id="articles-order-switch"></div>
                     </label>

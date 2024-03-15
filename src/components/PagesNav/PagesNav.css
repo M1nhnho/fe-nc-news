@@ -4,13 +4,13 @@
 
     button
     {
-        padding: 5px 10px;
         border: none;
-        border-right: solid 2px #242424;
+        border-right: solid 2px var(--dark-theme-black);
+        padding: 5px 10px;
         background: none;
-        color: var(--blurred-blue);
-        font-weight: bold;
         cursor: pointer;
+        font-weight: bold;
+        color: var(--blurred-blue);
 
         &:hover
         {
@@ -20,6 +20,6 @@
 
     button:first-child
     {
-        border-left: solid 2px #242424;
+        border-left: solid 2px var(--dark-theme-black);
     }
 }

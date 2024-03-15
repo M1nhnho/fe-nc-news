@@ -12,7 +12,7 @@ export default function PagesNav({ totalCount, isMaxWindowWidth, setPage })
                 )
                 .map((page) =>
                 {
-                    return <button key={page} onClick={() => setPage(page)}>{page}</button>
+                    return <button aria-label="View page" key={page} onClick={() => setPage(page)}>{page}</button>
                 })
         }
         </nav>

@@ -17,11 +17,11 @@ export default function ErrorDisplay({ error })
 
     return (
         <div id="error-display">
-            <h2>ERROR {error.status}</h2>
+            <h2>Error {error.status}</h2>
             <h3>{errorSubheadings[error.status]}</h3>
             <p>Sorry! {error.message}</p>
             <p>Return back to home by clicking the button below.</p>
-            <button className="home-button" onClick={returnToHome}></button>
+            <button aria-label="Return to home" className="home-button" onClick={returnToHome}></button>
         </div>
     )
 }
