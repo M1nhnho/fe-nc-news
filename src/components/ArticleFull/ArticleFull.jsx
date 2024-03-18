@@ -60,16 +60,17 @@ export default function ArticleFull()
 
     return (
         errorNotFound ? <ErrorDisplay error={errorNotFound} /> :
-        isLoading ? <Loader /> :
-        <>
-            <article>
-                <BaseCard cardType="article-full" cardObj={article}>
-                    <h3>{article.title}</h3>
-                    <UserTag user={author} />
-                    <p>{article.body}</p>
-                </BaseCard>
-            </article>
-            <CommentsList articleID={articleID} />
-        </>
+            isLoading ? <Loader /> :
+            <>
+                <h2>Article</h2>
+                <article>
+                    <BaseCard cardType="article-full" cardObj={article}>
+                        <h3>{article.title}</h3>
+                        <UserTag user={author} />
+                        <p>{article.body}</p>
+                    </BaseCard>
+                </article>
+                <CommentsList articleID={articleID} />
+            </>
     );
 }

@@ -1,4 +1,4 @@
-#loader
+.loader
 {
     position: relative;
     animation: spin 1s linear infinite;
@@ -30,7 +30,7 @@
         left: 50%;
         transform: translateX(-50%);
         animation: dropBall 0.5s linear forwards;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5), inset 0 0 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), inset 0 0 5px rgba(0, 0, 0, 0.1);
         border-radius: 50%;
         width: 35px;
         height: 35px;

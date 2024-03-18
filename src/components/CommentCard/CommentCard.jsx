@@ -40,12 +40,12 @@ export default function CommentCard({ comment, author, setCommentsObj })
     }
 
     return (
-        <li className={commentClasses}>
+        <div className={commentClasses}>
             <BaseCard cardType="comment-card" cardObj={comment} deleteFunction={deleteComment} deletionClasses={commentClasses} isDeleting={isDeleting}>
                 <UserTag user={author} />
                 <span className="comment-date-created">{comment.created_at.split('T')[0]} ({comment.created_at.split('T')[1].slice(0, 5)})</span>
                 <p>{comment.body}</p>
             </BaseCard>
-        </li>
+        </div>
     );
 }

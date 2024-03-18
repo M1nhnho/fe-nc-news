@@ -46,6 +46,7 @@ export default function CommentPost({ articleID, setCommentsObj })
     }
 
     return (
+        user &&
         <div className="comment-post">
             <UserTag user={user} />
             <form className="base-card comment-form">
@@ -65,7 +66,12 @@ export default function CommentPost({ articleID, setCommentsObj })
                     } />
                 <div className="comment-form__footer">
                     <span>{postMessage}</span>
-                    <button aria-label="Post comment" className="comment-form__submit" onClick={handleSubmit} disabled={isPosting}>Comment</button>
+                    <button
+                        aria-label="Post comment"
+                        className="button--blue comment-form__submit"
+                        onClick={handleSubmit}
+                        disabled={isPosting}
+                    >Comment</button>
                 </div>
             </form>
         </div>

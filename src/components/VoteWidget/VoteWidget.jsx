@@ -37,8 +37,24 @@ export default function VoteWidget({ parentType, votes, parentID })
 
     return (
         <div className="vote-widget">
-            <button aria-label="Upvote" className={`circle-button circle-button--upvote ${isVoted === 1 ? 'active' : ''}`} onClick={(event) => { sendVote(event, 1) }}></button>
-            <button aria-label="Downvote" className={`circle-button circle-button--downvote ${isVoted === -1 ? 'active' : ''}`} onClick={(event) => { sendVote(event, -1) }}></button>
+            <button
+                aria-label="Upvote"
+                className=
+                {
+                    `button--blue circle-button circle-button--upvote
+                    ${isVoted === 1 ? 'circle-button--active' : ''}`
+                }
+                onClick={(event) => { sendVote(event, 1) }}
+            ></button>
+            <button
+                aria-label="Downvote"
+                className=
+                {
+                    `button--blue circle-button circle-button--downvote
+                    ${isVoted === -1 ? 'circle-button--active' : ''}`
+                }
+                onClick={(event) => { sendVote(event, -1) }}
+            ></button>
             <span>{localVotes}</span>
         </div>
     )

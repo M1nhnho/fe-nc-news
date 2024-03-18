@@ -50,14 +50,10 @@ export default function ArticlesList()
         setIsLoading(true);
         setErrorObj(null);
         const limitQuery = isMaxWindowWidth ? 12 : 10;
-        getArticles(topic, sortByQuery, orderQuery, pageQuery, limitQuery)
-            .then((articlesData) =>
+        Promise.all([getArticles(topic, sortByQuery, orderQuery, pageQuery, limitQuery), getUsers()])
+            .then(([articlesData, usersData]) =>
             {
                 setArticlesObj(articlesData);
-                return getUsers();
-            })
-            .then((usersData) =>
-            {
                 setUsers(usersData);
                 setIsLoading(false);
             })
@@ -106,7 +102,7 @@ export default function ArticlesList()
                 <div id="articles-queries">
                     <label aria-label="Order articles by ascending or descending" htmlFor="articles-order-checkbox" id="articles-order-label">
                         <input type="checkbox" id="articles-order-checkbox" checked={orderQuery === 'asc'} onChange={(event) => setOrder(event.target.checked)} />
-                        <div className="circle-button" id="articles-order-switch"></div>
+                        <div className="button--blue circle-button" id="articles-order-switch"></div>
                     </label>
 
                     <label htmlFor="articles-sort-by-select" id="articles-sort-by-label">Sort by</label>
@@ -125,7 +121,11 @@ export default function ArticlesList()
                         articlesObj.articles.map((article) =>
                         {
                             const author = users.find((user) => user.username === article.author);
-                            return <ArticleCard key={article.article_id} article={article} author={author} />
+                            return (
+                                <li key={article.article_id}>
+                                    <ArticleCard article={article} author={author} />
+                                </li>
+                            )
                         })
                     }
                     </ul>

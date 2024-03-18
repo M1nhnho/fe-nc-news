@@ -1,6 +1,6 @@
 .pages-nav
 {
-    padding: 0 10px;
+    padding: 0 10px !important;
 
     button
     {
@@ -10,11 +10,11 @@
         background: none;
         cursor: pointer;
         font-weight: bold;
-        color: var(--blurred-blue);
+        color: rgb(var(--blurred-blue-rgb));
 
         &:hover
         {
-            color: var(--focused-blue);
+            color: rgb(var(--focused-blue-rgb));
         }
     }
 
