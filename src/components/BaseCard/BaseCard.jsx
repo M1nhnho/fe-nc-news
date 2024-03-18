@@ -8,6 +8,18 @@ export default function BaseCard({ children, cardType, cardObj, viewFunction, de
     const { user } = useContext(UserContext);
     const [rotateCardDegrees, setRotateCardDegrees] = useState({ x: 0, y: 0 });
     const [type, subtype] = cardType.split('-');
+    let ariaLabel = null;
+    if (viewFunction)
+    {
+        if (type === 'article')
+        {
+            ariaLabel = 'Click to view full article and its comments';
+        }
+        else if (type === 'topic')
+        {
+            ariaLabel = 'Click to view all articles under this topic';
+        }
+    }
 
     function rotateCard(event)
     {
@@ -24,10 +36,28 @@ export default function BaseCard({ children, cardType, cardObj, viewFunction, de
     }
 
     return (
-        <div className={viewFunction ? 'grow-hover' : ''}>
+        <div className={viewFunction && 'grow-hover'}>
             <div
-                className={`base-card ${cardType} ${viewFunction ? 'glow-hover' : ''} ${deletionClasses}`}
+                className=
+                {
+                    `base-card
+                    ${subtype === 'card' ? 'base-card--small' : ''}
+                    ${cardType}
+                    ${viewFunction ? 'glow-hover' : ''}
+                    ${deletionClasses || ''}`
+                }
                 onClick={viewFunction}
+
+                aria-label={ariaLabel}
+                tabIndex={ariaLabel && 0}
+                role={ariaLabel && 'button'}
+                onKeyDown=
+                {
+                    ariaLabel ?
+                    (event) => { (event.code === 'Space' || event.code === 'Enter') && viewFunction()}
+                    : undefined
+                }
+
                 onMouseMove={subtype !== 'full' ? rotateCard : undefined}
                 onMouseLeave={() => setRotateCardDegrees({ x: 0, y: 0 })}
                 style={
@@ -36,7 +66,7 @@ export default function BaseCard({ children, cardType, cardObj, viewFunction, de
             {
                 type === 'article' &&
                 <div className="article-img-container">
-                    <img src={cardObj.article_img_url} />
+                    <img alt={`Cover image for the article ${cardObj.title}`} src={cardObj.article_img_url} />
                     <div className="article-img-container__footer">
                         <b>{cardObj.topic}</b>
                         <span>
@@ -56,8 +86,13 @@ export default function BaseCard({ children, cardType, cardObj, viewFunction, de
                         <div className="comment-count"><b>{cardObj.comment_count}</b></div>
                     }
                     {
-                        deleteFunction && user.username === cardObj.author &&
-                        <button aria-label="Delete comment" className="circle-button circle-button--delete" onClick={deleteFunction} disabled={isDeleting}></button>
+                        deleteFunction && user && user.username === cardObj.author &&
+                        <button
+                            aria-label="Delete comment"
+                            className="button--red circle-button circle-button--delete"
+                            onClick={deleteFunction}
+                            disabled={isDeleting}
+                        ></button>
                     }
                 </div>
             }

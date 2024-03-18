@@ -1,7 +1,7 @@
 import './Header.css';
 import { useNavigate } from 'react-router-dom';
 import UserBar from "../UserBar/UserBar.jsx";
-import Nav from "../Nav/Nav.jsx";
+import TopicsNav from "../TopicsNav/TopicsNav.jsx";
 
 export default function Header()
 {
@@ -19,7 +19,7 @@ export default function Header()
                 <h1>NC News</h1>
             </div>
             <UserBar />
-            <Nav />
+            <TopicsNav />
         </header>
     )
 }

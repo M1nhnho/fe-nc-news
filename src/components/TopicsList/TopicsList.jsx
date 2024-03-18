@@ -21,17 +21,20 @@ export default function TopicsList()
     }, []);
 
     return (
-        isLoading ? <Loader /> :
         <>
-            <h2>Topics ({topics.length})</h2>
-            <ul className="cards-list" id="topics-list">
+            <h2>Topics ({topics.length || '?'})</h2>
+            <TopicCard topic={{ slug: 'all', description: 'Everything!' }} />
             {
-                topics.map((topic) =>
+                isLoading ? <Loader /> :
+                <ul className="cards-list" id="topics-list">
                 {
-                    return <TopicCard key={topic.slug} topic={topic} />
-                })
+                    topics.map((topic) =>
+                    {
+                        return <TopicCard key={topic.slug} topic={topic} />
+                    })
+                }
+                </ul>
             }
-            </ul>
         </>
     )
 }

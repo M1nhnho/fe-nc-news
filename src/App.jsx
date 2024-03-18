@@ -15,10 +15,19 @@ export default function App()
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/topics" element={<Navigate to={'/'} />} />
+
                 <Route path="/topics/:topic" element={<ArticlesList />} />
+
                 <Route path="/articles/:article_id" element={<Navigate to={`${window.location.pathname}/comments`} />} />
                 <Route path="/articles/:article_id/comments" element={<ArticleFull />} />
-                <Route path="*" element={<ErrorNotFound error={{ status: 404, message: `The URL\n${window.location.pathname}\ndoes not seem to exist...`}} />} />
+
+                <Route
+                    path="*"
+                    element=
+                    {
+                        <ErrorNotFound error={{ status: 404, message: `The URL\n${window.location.pathname}\ndoes not seem to exist...`}} />
+                    }
+                />
             </Routes>
         </UserProvider>
     )

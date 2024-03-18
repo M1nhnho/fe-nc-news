@@ -24,6 +24,11 @@
     }
 }
 
+.base-card--small
+{
+    width: 290px;
+}
+
 .base-card__footer
 {
     display: flex;

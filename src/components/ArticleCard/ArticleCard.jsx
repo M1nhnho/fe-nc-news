@@ -13,13 +13,11 @@ export default function ArticleCard({ article, author })
     }
 
     return (
-        <li>
-            <article>
-                <BaseCard cardType="article-card" cardObj={article} viewFunction={viewArticle}>
-                    <h3>{article.title}</h3>
-                    <UserTag user={author} />
-                </BaseCard>
-            </article>
-        </li>
+        <article>
+            <BaseCard cardType="article-card" cardObj={article} viewFunction={viewArticle}>
+                <h3>{article.title}</h3>
+                <UserTag user={author} />
+            </BaseCard>
+        </article>
     )
 }

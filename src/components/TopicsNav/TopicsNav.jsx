@@ -1,4 +1,4 @@
-import './Nav.css'
+import './TopicsNav.css'
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { getTopics } from "../../utils/api.js";
@@ -17,7 +17,7 @@ export default function Nav()
     }, []);
 
     return (
-        <nav id="topics-nav">
+        <nav id="topics-nav" className="base-bar">
             <Link to='/topics/all'>all</Link>
             {
                 topics.map((topic) =>

@@ -1,3 +1,11 @@
+/*
+Note regarding posting topics and articles:
+While the API supports the above, I've decided against implementing them to avoid too much user influence on the database.
+Ultimately this app is intended purely as a project showcase and so data used needs to stay relatively stable and appropriate.
+For example, avoiding the creation of 100 articles of the same test article.
+This also explains the lack of the delete button on articles and one hardcoded user to log in as.
+*/ 
+
 import axios from 'axios';
 
 const ncNewsAPI = axios.create({ baseURL: 'https://nc-news-452q.onrender.com/api/' });
@@ -12,7 +20,7 @@ export function getTopics()
         });
 }
 
-// postTopic()
+// postTopic() *Refer to note at top
 
 // --- ARTICLES ---
 export function getArticles(topic, sort_by, order, p, limit)
@@ -40,7 +48,7 @@ export function getArticleByID(id)
         });
 }
 
-// postArticle()
+// postArticle() *Refer to note at top
 
 export function patchArticleByArticleID(id, inc_votes)
 {

@@ -3,7 +3,7 @@ import './PagesNav.css';
 export default function PagesNav({ totalCount, isMaxWindowWidth, setPage })
 {
     return (
-        <nav className="pages-nav">
+        <nav className="base-bar pages-nav">
         {
             Array
                 .from(
