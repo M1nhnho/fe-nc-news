@@ -15,14 +15,23 @@ Hosted via [Netlify](https://www.netlify.com/).
 - Clickable title
   -> Navigates to <Home>
 
+- User bar
+  - Log in/out button
+    -> Logs in as tickle122 / Logs out
+
 - Navigation bar of clickable topics
   -> Navigates to <Articles> of the clicked topic
 
 #-------------------------
 
 <Home>
+- Latest article
+  -> Navigates to <Full Article> of the latest article
+
 - List of clickable topics
   -> Navigates to <Articles> of the clicked topic
+
+- Statistics of how many articles, topics, and users there are
 
 #-------------------------
 
@@ -48,7 +57,7 @@ Hosted via [Netlify](https://www.netlify.com/).
   - Vote buttons
     -> Upvotes/downvotes article
 
-- Post comment
+- Post comment (only appears if logged in)
   - Input box
   - Comment button
     -> Posts comment (only if comment is not empty)
@@ -56,7 +65,7 @@ Hosted via [Netlify](https://www.netlify.com/).
 - List of comments on the current article
   - Vote buttons
     -> Upvotes/downvotes article
-  - Delete button (only appears if it's your comment)
+  - Delete button (only appears if logged in and comment belongs to tickle122)
     -> Deletes comment
 
 - Navigation bar of clickable page numbers
