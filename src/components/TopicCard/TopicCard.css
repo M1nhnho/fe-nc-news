@@ -5,11 +5,15 @@
 
 .topic-card
 {
-    width: 290px !important;
-
     h3
     {
-        margin-top: 0 !important;
+        margin: -15px 0 10px -15px !important;
+        box-shadow: 0 0 10px rgba(var(--focused-blue-rgb), 0.5), inset 0 0 5px rgba(0, 0, 0, 0.1);
+        border-radius: 0 20px 0 0;
+        width: 300px;
+        padding: 5px 10px;
+        background-color: rgb(var(--blurred-blue-rgb));
+        color: white;
     }
 
     span
