@@ -42,3 +42,33 @@
     justify-content: space-between;
     margin-top: 15px;
 }
+
+.comment-form__submit
+{
+    position: relative;
+
+    &:disabled
+    {
+        color: lightgrey !important;
+
+        &:after
+        {
+            content: '';
+            position: absolute;
+            top: 2px;
+            bottom: 2px;
+            left: 2px;
+            right: 2px;
+            animation: slide-gradient 1s linear infinite;
+            border-radius: 25px;
+            background: linear-gradient(to right, transparent, rgba(var(--blurred-blue-rgb), 0.5), transparent, rgba(var(--blurred-blue-rgb), 0.5), transparent);
+            background-size: 200% auto;
+        }
+    }
+}
+
+@keyframes slide-gradient
+{
+    0% { background-position: right; }
+    100% { background-position: left; }
+}
