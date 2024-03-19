@@ -1,7 +1,7 @@
 # Northcoders News API
-As part of *Northcoder's Skills Bootcamp in Software Development*, we were tasked with building a C.R.U.D. application frontend which uses information from my other [backend project](https://github.com/M1nhnho/be-nc-news). This app allows clients to view articles, grouped under topics, along with comments and the users behind them - akin to Reddit or similar news services.
+As part of *Northcoder's Skills Bootcamp in Software Development*, we were tasked with building a C.R.U.D. news application frontend which uses information from my other [backend project](https://github.com/M1nhnho/be-nc-news). This app allows clients to view articles, grouped under topics, along with comments and the users behind them - akin to Reddit or similar news services.
 
-This frontend project was built in HTML, CSS, and Javascript using [React](https://react.dev/) to enable easier management by splitting parts into reusable components that can be conditionally rendered. Error handling has been implemented and various in-built hooks have been used along with my custom hook to detect window size. Responsiveness was also kept in consideration and [WAVE](https://wave.webaim.org/) was used for accessibility to conform to WCAG 2.2 at Level AA. Moreover, [Axios](https://axios-http.com/) was used to access my backend API.
+This frontend project was built in HTML, CSS, and JavaScript using [React](https://react.dev/) to enable easier management by splitting parts into reusable components that can be conditionally rendered. Error handling has been implemented and various in-built hooks have been used along with my own custom hooks. Responsiveness was also kept in consideration and [WAVE](https://wave.webaim.org/) was used for accessibility to conform to WCAG 2.2 at Level AA. Moreover, [Axios](https://axios-http.com/) was used to access my backend API.
 
 ## Hosted version
 My frontend project can be found here:  
@@ -46,9 +46,9 @@ Hosted via [Netlify](https://www.netlify.com/).
   -> Navigates to <Full Article> of the clicked article
   - Vote buttons
     -> Upvotes/downvotes article
-
-- Navigation bar of clickable page numbers
-  -> Displays the clicked page of articles
+  -> Scrolling to bottom loads more articles if possible
+  - Back to top button
+    -> Scrolls up to the top of the page
 
 #-------------------------
 
@@ -67,9 +67,9 @@ Hosted via [Netlify](https://www.netlify.com/).
     -> Upvotes/downvotes article
   - Delete button (only appears if logged in and comment belongs to tickle122)
     -> Deletes comment
-
-- Navigation bar of clickable page numbers
-  -> Displays the clicked page of comments
+  -> Scrolling to bottom loads more comments if possible
+  - Back to top button
+    -> Scrolls up to the top of the page
 
 #-------------------------
 

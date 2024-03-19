@@ -13,3 +13,19 @@
         height: 20px;
     }
 }
+
+.user-tag__username--logged-in
+{
+    position: relative;
+    font-weight: bold;
+    color: white;
+
+    &::before
+    {
+        content: attr(username);
+        position: absolute;
+        z-index: -1;
+        left: 0;
+        -webkit-text-stroke: 3px var(--dark-theme-black);
+    }
+}

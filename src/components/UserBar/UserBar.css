@@ -23,7 +23,6 @@
     .user-tag__username
     {
         margin-left: 5px;
-        font-weight: bold;
     }
     .user-tag__name
     {
@@ -38,7 +37,6 @@
         transition: all 0.25s;
         width: 111px;
         height: 42px;
-        font-size: 1rem;
     }
     #login-button
     {

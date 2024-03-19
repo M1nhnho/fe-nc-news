@@ -1,35 +1,56 @@
 import './CommentsList.css';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { useIsMaxWindowWidth } from '../../hooks/useIsMaxWindowWidth.jsx';
+import { useInfiniteScroll } from '../../hooks/useInfiniteScroll.jsx';
 import { getCommentsByArticleID, getUsers } from '../../utils/api.js';
 import Loader from '../Loader/Loader.jsx';
 import CommentPost from '../CommentPost/CommentPost.jsx';
 import CommentCard from '../CommentCard/CommentCard.jsx';
-import PagesNav from '../PagesNav/PagesNav.jsx';
+import BackToTopButton from '../BackToTopButton/BackToTopButton.jsx';
 
 export default function CommentsList({ articleID })
 {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const pageQuery = searchParams.get('p')
     const isMaxWindowWidth = useIsMaxWindowWidth();
-
     const [commentsObj, setCommentsObj] = useState({});
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [pageQuery, setPageQuery] = useState(2);
+    const [isLoadingMore, setIsLoadingMore] = useInfiniteScroll(loadMoreComments);
 
-    function setPage(pageNumber)
+    function loadMoreComments()
     {
-        const newParams = new URLSearchParams(searchParams);
-        newParams.set('p', pageNumber);
-        setSearchParams(newParams);
+        if (pageQuery > 1 &&
+            pageQuery <= Math.ceil(commentsObj.totalCount / (isMaxWindowWidth ? 12 : 10)))
+        {
+            const limitQuery = isMaxWindowWidth ? 12 : 10;
+            setTimeout(() =>
+            {
+                getCommentsByArticleID(articleID, pageQuery, limitQuery)
+                    .then((commentsData) =>
+                    {
+                        setCommentsObj((currentCommentsObj) =>
+                        {
+                            let newCommentsObj = { comments: [], totalCount: commentsData.totalCount};
+                            currentCommentsObj.comments && newCommentsObj.comments.push(...currentCommentsObj.comments);
+                            newCommentsObj.comments.push(...commentsData.comments);
+                            return newCommentsObj;
+                        })
+                        setPageQuery(pageQuery + 1);
+                        setIsLoadingMore(false);
+                    });
+            }, 1000)
+        }
+        else
+        {
+            setIsLoadingMore(false);
+        }
     }
 
     useEffect(() =>
     {
         setIsLoading(true);
         const limitQuery = isMaxWindowWidth ? 12 : 10;
-        getCommentsByArticleID(articleID, pageQuery, limitQuery)
+        getCommentsByArticleID(articleID, 1, limitQuery)
             .then((commentsData) =>
             {
                 setCommentsObj(commentsData);
@@ -40,7 +61,7 @@ export default function CommentsList({ articleID })
                 setUsers(usersData);
                 setIsLoading(false);
             });
-    }, [articleID, pageQuery, isMaxWindowWidth]);
+    }, [articleID, isMaxWindowWidth]);
 
     return (
         isLoading ? <Loader /> :
@@ -60,7 +81,8 @@ export default function CommentsList({ articleID })
                 })
             }
             </ul>
-            <PagesNav totalCount={commentsObj.totalCount} isMaxWindowWidth={isMaxWindowWidth} setPage={setPage} />
+            {isLoadingMore && <Loader />}
+            <BackToTopButton />
         </>
     );
 }
