@@ -68,7 +68,7 @@ export default function CommentPost({ articleID, setCommentsObj })
                     <span>{postMessage}</span>
                     <button
                         aria-label="Post comment"
-                        className="button--blue comment-form__submit"
+                        className="button--blue text-button comment-form__submit"
                         onClick={handleSubmit}
                         disabled={isPosting}
                     >Comment</button>

@@ -51,7 +51,7 @@ a
 button
 {
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-family: Urbanist;
     font-weight: 500;
 }
@@ -151,6 +151,33 @@ nav
 {
     box-shadow: 0 0 5px rgba(var(--focused-red-rgb), 0.5), inset 0 0 5px rgba(0, 0, 0, 0.1);
     background-color: rgb(var(--blurred-red-rgb));
+}
+
+.text-button
+{
+    transition: all 0.1s;
+    border-radius: 50px;
+    width: fit-content;
+    height: 40px;
+    padding: 10px 15px;
+
+    &:active
+    {
+        margin: 2px;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+        border: solid 1px rgb(var(--focused-blue-rgb));
+        width: calc(fit-content - 4px);
+        height: 36px;
+        font-size: 0.9rem;
+    }
+
+    &:disabled
+    {
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+        border: solid 1px grey;
+        background-color: lightgray;
+        color: grey;
+    }
 }
 
 .circle-button

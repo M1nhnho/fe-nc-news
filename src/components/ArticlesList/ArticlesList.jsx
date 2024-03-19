@@ -2,26 +2,27 @@ import './ArticlesList.css';
 import { useEffect, useState } from "react"
 import { useParams, useSearchParams } from "react-router-dom";
 import { useIsMaxWindowWidth } from '../../hooks/useIsMaxWindowWidth.jsx';
+import { useInfiniteScroll } from '../../hooks/useInfiniteScroll.jsx';
 import { getArticles, getUsers } from "../../utils/api.js";
 import ErrorDisplay from '../ErrorDisplay/ErrorDisplay.jsx';
 import Loader from "../Loader/Loader.jsx";
 import ArticleCard from "../ArticleCard/ArticleCard.jsx";
-import PagesNav from '../PagesNav/PagesNav.jsx';
+import BackToTopButton from '../BackToTopButton/BackToTopButton.jsx';
 
 export default function ArticlesList()
 {
     const { topic } = useParams();
-    
     const [searchParams, setSearchParams] = useSearchParams();
     const sortByQuery = searchParams.get('sort_by');
     const orderQuery = searchParams.get('order');
-    const pageQuery = searchParams.get('p')
     const isMaxWindowWidth = useIsMaxWindowWidth();
     
     const [articlesObj, setArticlesObj] = useState({});
     const [users, setUsers] = useState([]);
     const [errorObj, setErrorObj] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [pageQuery, setPageQuery] = useState(2);
+    const [isLoadingMore, setIsLoadingMore] = useInfiniteScroll(loadMoreArticles);
 
     function setSortBy(sortByValue)
     {
@@ -38,11 +39,38 @@ export default function ArticlesList()
         setSearchParams(newParams);
     }
 
-    function setPage(pageNumber)
+    function scrollBackToTop()
     {
-        const newParams = new URLSearchParams(searchParams);
-        newParams.set('p', pageNumber);
-        setSearchParams(newParams);
+        topicHeadingRef.current.scrollIntoView();
+    }
+
+    function loadMoreArticles()
+    {
+        if (pageQuery > 1 &&
+            pageQuery <= Math.ceil(articlesObj.totalCount / (isMaxWindowWidth ? 12 : 10)))
+        {
+            const limitQuery = isMaxWindowWidth ? 12 : 10;
+            setTimeout(() =>
+            {
+                getArticles(topic, sortByQuery, orderQuery, pageQuery, limitQuery)
+                    .then((articlesData) =>
+                    {
+                        setArticlesObj((currentArticlesObj) =>
+                        {
+                            let newArticlesObj = { articles: [], totalCount: articlesData.totalCount};
+                            currentArticlesObj.articles && newArticlesObj.articles.push(...currentArticlesObj.articles);
+                            newArticlesObj.articles.push(...articlesData.articles);
+                            return newArticlesObj;
+                        })
+                        setPageQuery(pageQuery + 1);
+                        setIsLoadingMore(false);
+                    });
+            }, 1000)
+        }
+        else
+        {
+            setIsLoadingMore(false);
+        }
     }
 
     useEffect(() =>
@@ -50,11 +78,12 @@ export default function ArticlesList()
         setIsLoading(true);
         setErrorObj(null);
         const limitQuery = isMaxWindowWidth ? 12 : 10;
-        Promise.all([getArticles(topic, sortByQuery, orderQuery, pageQuery, limitQuery), getUsers()])
+        Promise.all([getArticles(topic, sortByQuery, orderQuery, 1, limitQuery), getUsers()])
             .then(([articlesData, usersData]) =>
             {
                 setArticlesObj(articlesData);
                 setUsers(usersData);
+                setPageQuery(2);
                 setIsLoading(false);
             })
             .catch((error) =>
@@ -64,7 +93,6 @@ export default function ArticlesList()
                     let queries = '';
                     sortByQuery && (queries += `\nSort by: ${sortByQuery}`);
                     orderQuery && (queries += `\nOrder by: ${orderQuery}`);
-                    pageQuery && (queries += `\nPage number: ${pageQuery}`);
                     setErrorObj(
                         {
                             status: error.response.status,
@@ -91,17 +119,22 @@ export default function ArticlesList()
                     )
                 }
             });
-    }, [topic, sortByQuery, orderQuery, pageQuery, isMaxWindowWidth]);
+    }, [topic, sortByQuery, orderQuery, isMaxWindowWidth]);
 
     return (
         errorObj ? <ErrorDisplay error={errorObj} /> : 
         <>
             <h2>{topic}</h2>
             <div id="articles-info">
-                <span>{articlesObj.totalCount && `${articlesObj.totalCount} articles found!`}</span>
+                <span>{!isLoading && `${articlesObj.totalCount} articles found!`}</span>
                 <div id="articles-queries">
                     <label aria-label="Order articles by ascending or descending" htmlFor="articles-order-checkbox" id="articles-order-label">
-                        <input type="checkbox" id="articles-order-checkbox" checked={orderQuery === 'asc'} onChange={(event) => setOrder(event.target.checked)} />
+                        <input
+                            type="checkbox"
+                            id="articles-order-checkbox"
+                            checked={orderQuery === 'asc'}
+                            onChange={(event) => setOrder(event.target.checked)}
+                        />
                         <div className="button--blue circle-button" id="articles-order-switch"></div>
                     </label>
 
@@ -129,7 +162,8 @@ export default function ArticlesList()
                         })
                     }
                     </ul>
-                    <PagesNav totalCount={articlesObj.totalCount} isMaxWindowWidth={isMaxWindowWidth} setPage={setPage} />
+                    {isLoadingMore && <Loader />}
+                    <BackToTopButton />
                 </>
             }
         </>
