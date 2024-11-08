@@ -1,4 +1,4 @@
-# Northcoders News API <img alt="Static Badge" src="https://img.shields.io/badge/Node.js-v20.11.0-green?link=https%3A%2F%2Fnodejs.org%2Fen%2Fdownload">
+# Northcoders News API <img alt="Static Badge" src="https://img.shields.io/badge/Node.js-v20.11.0-green?link=https%3A%2F%2Fnodejs.org%2Fen%2Fdownload"> <img alt="Static Badge" src="https://img.shields.io/badge/React-v18.2.0-blue">
 
 As part of *Northcoder's Skills Bootcamp in Software Development*, we were tasked with building a C.R.U.D. news application frontend which uses information from my other [backend project](https://github.com/M1nhnho/be-nc-news). This app allows clients to view articles, grouped under topics, along with comments and the users behind them - akin to Reddit or similar news services.
 
