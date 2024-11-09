@@ -235,6 +235,7 @@ nav
     }
     &:disabled
     {
+        /* dsds */
         &::before
         {
             display: none;
@@ -331,16 +332,34 @@ nav
     background-color: rgba(0, 255, 0, 0.1);
 }
 
+.deletion--pending::before,
+.deletion--unsuccessful::before,
+.deletion--successful::before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    border-radius: 0 20px 20px 20px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
 .deletion--pending::after,
-.deletion--unsuccessful::after
+.deletion--unsuccessful::after,
+.deletion--successful::after
 {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 101;
 
     border: solid 1px rgb(var(--focused-red-rgb));
     border-radius: 0 20px 20px 20px;
+    box-shadow: 0 0 10px rgb(var(--focused-red-rgb));
     width: 75%;
     padding: 10px;
     background-color: rgb(var(--blurred-red-rgb));
@@ -350,21 +369,58 @@ nav
 .deletion--pending::after
 {
     content: 'Deletion pending...';
+    animation: deleting-ellipsis 3s linear infinite;
 }
 .deletion--unsuccessful::after
 {
     content: 'Sorry! Something went wrong, please try again.';
 }
-.deletion--successful
+.deletion--successful::after
 {
     content: 'Deletion successful!';
-    animation: deletion 0.25s ease-in-out forwards;
+}
+.deletion--successful
+{
+    animation: deletion 1.25s ease-in-out forwards;
 }
 @keyframes deletion
 {
+    0%
+    {
+        opacity: 1;
+        transform: none;
+    }
+    80%
+    {
+        opacity: 1;
+        transform: none;
+    }
     100%
     {
         opacity: 0;
         transform: translate(-50%, -50%) scale(0%);
+    }
+}
+@keyframes deleting-ellipsis
+{
+    0%
+    {
+        content: 'Deletion pending';
+    }
+    25%
+    {
+        content: 'Deletion pending.';
+    }
+    50%
+    {
+        content: 'Deletion pending..';
+    }
+    75%
+    {
+        content: 'Deletion pending...';
+    }
+    100%
+    {
+        content: 'Deletion pending';
     }
 }

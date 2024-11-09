@@ -6,17 +6,17 @@ import UserTag from '../UserTag/UserTag.jsx';
 
 export default function CommentCard({ comment, author, setCommentsObj })
 {
-    const [commentClasses, setCommentClasses] = useState('');
+    const [deletionClasses, setDeletionClasses] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
 
     function deleteComment()
     {
         setIsDeleting(true);
-        setCommentClasses('deletion--pending')
+        setDeletionClasses('deletion--pending');
         deleteCommentByID(comment.comment_id)
             .then(() =>
             {
-                setCommentClasses('deletion--successful');
+                setDeletionClasses('deletion--successful');
                 setTimeout(() =>
                 {
                     setCommentsObj((currCommentsObj) =>
@@ -26,26 +26,30 @@ export default function CommentCard({ comment, author, setCommentsObj })
                         commentsCopy.splice(deletedCommentIndex, 1);
                         return { comments: commentsCopy, totalCount: currCommentsObj.totalCount - 1 }
                     })
-                }, 1000);
+                }, 1250);
             })
             .catch((error) =>
             {
-                setCommentClasses('deletion--unsuccessful');
+                setDeletionClasses('deletion--unsuccessful');
                 setTimeout(() =>
                 {
-                    setCommentClasses('');
+                    setDeletionClasses('');
                 }, 5000);
                 setIsDeleting(false);
             });
     }
 
     return (
-        <div className={commentClasses}>
-            <BaseCard cardType="comment-card" cardObj={comment} deleteFunction={deleteComment} deletionClasses={commentClasses} isDeleting={isDeleting}>
-                <UserTag user={author} />
-                <span className="comment-date-created">{comment.created_at.split('T')[0]} ({comment.created_at.split('T')[1].slice(0, 5)})</span>
-                <p>{comment.body}</p>
-            </BaseCard>
-        </div>
+        <BaseCard
+            cardType="comment-card"
+            cardObj={comment}
+            deleteFunction={deleteComment}
+            deletionClasses={deletionClasses}
+            isDeleting={isDeleting}
+        >
+            <UserTag user={author} />
+            <span className="comment-date-created">{comment.created_at.split('T')[0]} ({comment.created_at.split('T')[1].slice(0, 5)})</span>
+            <p>{comment.body}</p>
+        </BaseCard>
     );
 }
