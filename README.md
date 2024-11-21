@@ -5,6 +5,8 @@ As part of *Northcoder's Skills Bootcamp in Software Development*, we were taske
 This frontend project was built in HTML, CSS, and JavaScript using [React](https://react.dev/) to enable easier management by splitting parts into reusable components that can be conditionally rendered. Error handling has been implemented and various in-built hooks have been used along with my own custom hooks. Responsiveness was also kept in consideration and [WAVE](https://wave.webaim.org/) was used for accessibility to conform to WCAG 2.2 at Level AA. Moreover, [Axios](https://axios-http.com/) was used to access my backend API.
 
 ## Hosted version
+> [!NOTE]
+> The backend host is using the free plan, so initial loading for data may take 50 seconds or more.
 ### ➤ https://minhnho-nc-news.netlify.app
 
 Hosted via [Netlify](https://www.netlify.com/).
